@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Real Time Board</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+  <!-- Image and text -->
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand">
+    PDIS Live
+  </a>
+</nav>
+  <div class="container">
+  <ul class="admin">
+    <div class="messageLog">
+        <h1 align="center"  id="title"></h1>
+    </div>
+    <div>
+        <h1>Image upload</h1>
+       <div style="color:red;">1500*150</div> 
+        <form action="/upload/image" id="upload" encType="multipart/form-data" method="post">
+            <input type="file" name="pic" accept="image/*">
+            <input type="submit">
+        </form>
+    </div>
+     <div>
+        <h1>JSON upload</h1>
+        <a href="example.json" charset="UTF-8" target="_bland">example</a>
+        <form action="/upload/json" id="upload" encType="multipart/form-data" method="post">
+            <input type="file" name="json" accept="json/*">
+            <input type="submit">
+        </form>
+    </div>
+   
+    <div class="row">
+    <div style="padding-bottom:100px" id="button-array">
+  </div>
+</div>
+
+    <!--<h1>List<h1>
+    <div>
+        <textarea>
+         
+        </textarea>
+    </div>
+    -->
+   <input class="inputMessage" id="inputField" maxlength="22" placeholder="Type here..."/></input>
+  </div>
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/main.js"></script>
+</body>
+</html>

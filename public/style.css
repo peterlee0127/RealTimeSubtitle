@@ -1,0 +1,95 @@
+/* Fix user-agent */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+.admin {
+    background-color:white;
+}
+
+
+html, input {
+  font-family:
+    "HelveticaNeue-Light",
+    "Helvetica Neue Light",
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    "Lucida Grande",
+    sans-serif;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+  word-wrap: break-word;
+}
+
+
+
+.pages {
+
+  background: url("back.png") no-repeat ;
+
+  background-position:center;
+  display:block; 
+  margin:0 auto;
+  height: auto;
+  padding: 0;
+  width: 100%;
+
+}
+
+.messageLog {
+  font-family: '標楷體';
+    font-size: 12px;
+    margin:0 auto; 
+    color:black;
+}
+
+.message {
+  font-family: '標楷體';
+  font-size: 30px;
+  padding: 30px;
+    margin:0 auto; 
+    color:black;
+}
+
+.inputMessage {
+  font-size: 100%;
+}
+
+.messages {
+  height: 100%;
+  margin: 0;
+  overflow-y: scroll;
+  padding: 10px 20px 10px 20px;
+}
+
+
+.inputMessage {
+  border: 10px solid #000;
+  bottom: 0px;
+  height: 60px;
+  left: 0;
+  outline: none;
+  padding-left: 10px;
+  position: fixed;
+  right: 0;
+  width: 100%;
+}
+.listbutton{
+  padding: 5px;
+}
