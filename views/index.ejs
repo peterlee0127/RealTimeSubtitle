@@ -1,18 +1,38 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Real Time Board</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+  
+  </style>
 </head>
+
 <body>
-  <ul class="pages">
+   <!--  <ul class="pages" style="display:none;">
     <div class="message">
-        <h1 align="center" style="position: relative;left: 50px;" id="title"><%= title %></h1>
+    <h1 align="center" style="position: relative;left: 50px;" id="title">
+        <%= title %>
+      </h1>
     </div>
   </ul>
+   -->
+
+  <div style="margin:30px;">
+
+    <div class="textbox_bg">
+      <img src="back.png" style="height:100%;float:left;">
+      <div id="title" style="padding: 25px;height: 95px; float: left; word-break: break-all;font-family:標楷體;"> 
+       <%= title %>
+      </div>
+    </div>
+  </div>
+
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
   <script src="/main.js"></script>
 </body>
+
 </html>

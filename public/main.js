@@ -3,6 +3,7 @@
 
     socket.on('new title', function (json) {
         $("#title").animate({opacity:0},300,function() {
+        
             $("#title").text(json.title).animate({opacity:1},200);
         });
     });
