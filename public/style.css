@@ -103,5 +103,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9dbdb', end
   width: 100%;
 }
 .listbutton{
-  padding: 5px;
+  padding: 3px;
+  vertical-align: middle;
+  display: table;
+  width: 100%;
 }

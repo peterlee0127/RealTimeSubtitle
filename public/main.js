@@ -78,9 +78,9 @@ $.getJSON("api/list", function (json) {
 
         var buttonSrc = "<div class='col-lg-" + col_num + "' style='text-align: left;'><ul>";
 
-        list[i].forEach(function (element) {
-            buttonSrc += "<div class='listbutton' ><button type='button' onClick=\"";
-            buttonSrc += "clickTitle('" + element + "')\"" + " class='btn btn-primary'>" + ">" + "</button><div>"+element+"</div></div> "
+        list[i].forEach(function (element, index) {
+            buttonSrc += "<div class='listbutton' ><button type='button' style='float:left;' onClick=\"";
+            buttonSrc += "clickTitle('" + element + "')\"" + " class='btn btn-primary btn-sm'>" + (index + 1) + "</button><div>" + element + "</div></div> "
             if (element.length > 22) {
                 alert(element + ' 超過二十二字元，可能會造成顯示問題');
             }
