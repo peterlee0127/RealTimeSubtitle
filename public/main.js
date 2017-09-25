@@ -1,27 +1,33 @@
 
 var socket = io();
-var nowText = "";
+var nowText = $("#title").text;
+var showStatus = $("#displaySwitch").is(':checked');
+
 //接收訊息並顯示在前端畫面上
 socket.on('new title', function (json) {
+    if(!showStatus){return;}
 
     if (nowText != json.title) {
-        if (json.status)
-            $(".textbox_bg").fadeOut("fast", function () {
-                // Animation complete.
-            });
+        $(".textbox_bg").fadeOut("fast", function () {
+            // Animation complete.
+        });
         $("#title").animate({ opacity: 0 }, 200, function () {
             $("#title").text(json.title).animate({ opacity: 1 }, 200);
         });
         nowText = json.title;
-        if (json.status)
-            $(".textbox_bg").fadeIn("fast", function () {
-                // Animation complete.
-            });
+        $(".textbox_bg").fadeIn("fast", function () {
+            // Animation complete.
+        });
     }
+    
+});
 
+socket.on('new status', function(json){
     //接收顯示狀態是否改變
-    console.log(json);
-    if (json.status == false) {
+    showStatus = json.status;
+    $("#displaySwitch").attr("checked", showStatus);
+    
+    if (showStatus == false) {
         $(".textbox_bg").fadeOut("slow", function () {
             // Animation complete.
         });
@@ -33,29 +39,32 @@ socket.on('new title', function (json) {
     }
 });
 
-
 //送出訊息(訊息,顯示狀態)
-function sendSocket(text, status) {
-
-    socket.emit('title', {
-        title: text, status: status
-    });
+function sendNewTitle(text) {
+    socket.emit('title', { title: text });
 }
 
 
 //更改顯示狀態
 function changeShowStatus() {
 
-    console.log($("#displaySwitch").is(':checked'));
-    sendSocket(nowText, $("#displaySwitch").is(':checked'));
-
+    if(nowText==""){
+        $("#displaySwitch").attr("checked", false);
+        return;
+    }
+    socket.emit('status', {
+        status:$("#displaySwitch").is(':checked') 
+    });
 
 }
 
 //輸入新訊息
-function addTitle() {
+function newTitle() {
     var data = $("#inputField").val();
-    sendSocket(data, $("#displaySwitch").is(':checked'));
+    if(data==""){
+        return
+    }
+    sendNewTitle(data);
     $("#inputField").val('');
 }
 
@@ -64,7 +73,7 @@ function clickTitle(title_text) {
 
     if (title_text != '') {
         $("#inputField").val(title_text);
-        addTitle();
+        newTitle();
     }
 };
 
@@ -97,13 +106,14 @@ $.getJSON("api/list", function (json) {
 $(document).keypress(function (e) {
     if (e.which == 13) {
         // enter pressed
-        addTitle();
+        newTitle();
     }
 });
 // ctrl+~ = dislpay click
 $(document).keydown(function (e) {
     if (e.keyCode == 192 && e.ctrlKey) {
         $('#displaySwitch').click();
+        changeShowStatus();
     }
 });
 

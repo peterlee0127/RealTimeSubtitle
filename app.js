@@ -17,11 +17,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
-  res.render('index', { title: message });
+  res.render('index', { title: message,status:showStatus });
 
 })
 app.get('/admin', (req, res) => {
-  res.render('admin', { title: message });
+  res.render('admin', { title: message,status:showStatus });
 
 });
 
@@ -72,9 +72,12 @@ function handlefile(file, res,save_path) {
 io.on('connection', function (socket) {
   socket.on('title', function (data) {
     message = data.title;
-    showStatus = data.status;
-    io.emit('new title', { title: message, status: showStatus });
+    io.emit('new title', { title: message });
   });
+  socket.on('status',function(data){
+    showStatus = data.status;
+    io.emit('new status',{ status: showStatus }) 
+  })
 });
 
 
