@@ -93,11 +93,19 @@ $.getJSON("api/list", function (json) {
 
 });
 
-//按enter=送出
+//hotkey
 $(document).keypress(function (e) {
     if (e.which == 13) {
         // enter pressed
         addTitle();
     }
 });
+// ctrl+~ = dislpay click
+$(document).keydown(function (e) {
+    if (e.keyCode == 192 && e.ctrlKey) {
+        $('#displaySwitch').click();
+    }
+});
+
+
 
