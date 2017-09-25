@@ -5,10 +5,15 @@ var showStatus = $("#displaySwitch").is(':checked');
 
 //接收訊息並顯示在前端畫面上
 socket.on('new title', function (json) {
-    if(!showStatus){return;}
 
     if (nowText != json.title) {
-        $(".textbox_bg").fadeOut("fast", function () {
+
+        if(!showStatus){
+            nowText = json.title;
+            $("#title").text(nowText);
+            return;
+        }       
+    $(".textbox_bg").fadeOut("fast", function () {
             // Animation complete.
         });
         $("#title").animate({ opacity: 0 }, 200, function () {
