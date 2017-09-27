@@ -27,3 +27,4 @@ node_modules
 .xcuserstate
 xcuserdata/
 list.json
+.vscode/launch.json
