@@ -86,24 +86,30 @@ function clickTitle(title_text) {
 //將匯入名單轉成按鈕，供直接點選
 $.getJSON("api/list", function (json) {
     var list = JSON.parse(json).list;
-    var html = ""
+    var list_array = "";
+    var list_draw = "";
     var col_num = 12 / list.length;
     for (var i = 0; i < list.length; i++) {
 
         var buttonSrc = "<div class='col-lg-" + col_num + "' style='text-align: left;'><ul>";
+        var drawSrc = "";
 
         list[i].forEach(function (element, index) {
             buttonSrc += "<div class='listbutton' ><button type='button' style='float:left;' onClick=\"";
             buttonSrc += "clickTitle('" + element + "')\"" + " class='btn btn-primary btn-sm'>" + (index + 1) + "</button><div>" + element + "</div></div> "
-            if (element.length > 22) {
-                alert(element + ' 超過二十二字元，可能會造成顯示問題');
-            }
+            
+            drawSrc += "<div class='listbutton' ><button type='button' style='float:left;' onClick=\"";
+            drawSrc += "clickTitle('" + element + "')\"" + " class='draggable btn btn-primary btn-sm'>" + (index + 1) + "</button><div></div></div> "
+
         }, this);
         buttonSrc += "</ul></div>";
-        html += buttonSrc;
+        drawSrc += "</div>";
+
+        list_array += buttonSrc;
+        list_draw += drawSrc;
     }
-    html += "";
-    $("#button-array").html(html);
+    $("#button-array").html(list_array);
+    $("#container-draw").html(list_draw);
 
 });
 
