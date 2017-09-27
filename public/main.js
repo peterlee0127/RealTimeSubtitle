@@ -82,7 +82,6 @@ function clickTitle(title_text) {
     }
 };
 
-
 //將匯入名單轉成按鈕，供直接點選
 $.getJSON("api/list", function (json) {
     var list = JSON.parse(json).list;
@@ -97,19 +96,11 @@ $.getJSON("api/list", function (json) {
         list[i].forEach(function (element, index) {
             buttonSrc += "<div class='listbutton' ><button type='button' style='float:left;' onClick=\"";
             buttonSrc += "clickTitle('" + element + "')\"" + " class='btn btn-primary btn-sm'>" + (index + 1) + "</button><div>" + element + "</div></div> "
-<<<<<<< HEAD
-            // if (element.length > 22) {
-            //     alert(element + ' 超過二十二字元，可能會造成顯示問題');
-            // }
-=======
             
-            drawSrc += "<div class='listbutton' ><button type='button' style='float:left;' onClick=\"";
-            drawSrc += "clickTitle('" + element + "')\"" + " class='draggable btn btn-primary btn-sm'>" + (index + 1) + "</button><div></div></div> "
-
->>>>>>> e51b6c49e20043170ab12874da700ec5ae35baa7
+            drawSrc += "<div class='draggable' id=\"draggable-"+ (i+1)+"-"+ (index+1) + "\"><p>" + (i+1)+"-"+ (index+1) + "</p></div>";
         }, this);
         buttonSrc += "</ul></div>";
-        drawSrc += "</div>";
+        drawSrc += "";
 
         list_array += buttonSrc;
         list_draw += drawSrc;
@@ -119,6 +110,31 @@ $.getJSON("api/list", function (json) {
 
 });
 
+$( function() {
+
+
+    var sPositions = localStorage.positions || "{}",
+        positions = JSON.parse(sPositions);
+
+    $.each(positions, function (id, pos) {
+        console.log(id);
+        if(id=="draggable"){
+            $("#" + id).css(pos)
+        }
+    })
+    $(".draggable").draggable({
+    containment: "#container-draw",
+    scroll: false,
+    stop: function (event, ui) {
+        console.log(this.id);
+        positions[this.id] = ui.position
+        localStorage.positions = JSON.stringify(positions)
+    }
+});
+
+
+
+} );
 //hotkey
 $(document).keypress(function (e) {
     if (e.which == 13) {
