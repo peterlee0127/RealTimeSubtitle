@@ -21,7 +21,8 @@ app.get('/', (req, res) => {
 
 })
 app.get('/admin', (req, res) => {
-  res.render('admin', { title: message,status:showStatus });
+
+  res.render('admin', { title: message,status:showStatus});
 
 });
 

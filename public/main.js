@@ -8,12 +8,12 @@ socket.on('new title', function (json) {
 
     if (nowText != json.title) {
 
-        if(!showStatus){
+        if (!showStatus) {
             nowText = json.title;
             $("#title").text(nowText);
             return;
-        }       
-    $(".textbox_bg").fadeOut("fast", function () {
+        }
+        $(".textbox_bg").fadeOut("fast", function () {
             // Animation complete.
         });
         $("#title").animate({ opacity: 0 }, 200, function () {
@@ -24,14 +24,14 @@ socket.on('new title', function (json) {
             // Animation complete.
         });
     }
-    
+
 });
 
-socket.on('new status', function(json){
+socket.on('new status', function (json) {
     //接收顯示狀態是否改變
     showStatus = json.status;
     $("#displaySwitch").attr("checked", showStatus);
-    
+
     if (showStatus == false) {
         $(".textbox_bg").fadeOut("slow", function () {
             // Animation complete.
@@ -53,12 +53,12 @@ function sendNewTitle(text) {
 //更改顯示狀態
 function changeShowStatus() {
 
-    if(nowText==""){
+    if (nowText == "") {
         $("#displaySwitch").attr("checked", false);
         return;
     }
     socket.emit('status', {
-        status:$("#displaySwitch").is(':checked') 
+        status: $("#displaySwitch").is(':checked')
     });
 
 }
@@ -66,7 +66,7 @@ function changeShowStatus() {
 //輸入新訊息
 function newTitle() {
     var data = $("#inputField").val();
-    if(data==""){
+    if (data == "") {
         return
     }
     sendNewTitle(data);
@@ -96,8 +96,8 @@ $.getJSON("api/list", function (json) {
         list[i].forEach(function (element, index) {
             buttonSrc += "<div class='listbutton' ><button type='button' style='float:left;' onClick=\"";
             buttonSrc += "clickTitle('" + element + "')\"" + " class='btn btn-primary btn-sm'>" + (index + 1) + "</button><div>" + element + "</div></div> "
-            
-            drawSrc += "<div class='draggable' id=\"draggable-"+ (i+1)+"-"+ (index+1) + "\"><p>" + (i+1)+"-"+ (index+1) + "</p></div>";
+
+            drawSrc += "<div class='draggable ui-widget-content'><p>" + (i + 1) + "-" + (index + 1) + "</p></div>";
         }, this);
         buttonSrc += "</ul></div>";
         drawSrc += "";
@@ -105,36 +105,54 @@ $.getJSON("api/list", function (json) {
         list_array += buttonSrc;
         list_draw += drawSrc;
     }
+
     $("#button-array").html(list_array);
     $("#container-draw").html(list_draw);
 
 });
 
-$( function() {
 
+var sPositions = localStorage.positions || "{}",
+    positions = JSON.parse(sPositions);
 
-    var sPositions = localStorage.positions || "{}",
-        positions = JSON.parse(sPositions);
-
-    $.each(positions, function (id, pos) {
-        console.log(id);
-        if(id=="draggable"){
-            $("#" + id).css(pos)
-        }
-    })
-    $(".draggable").draggable({
-    containment: "#container-draw",
-    scroll: false,
-    stop: function (event, ui) {
-        console.log(this.id);
-        positions[this.id] = ui.position
-        localStorage.positions = JSON.stringify(positions)
+$.each(positions, function (id, pos) {
+    console.log(id);
+    if (id == "draggable") {
+        $("#" + id).css(pos)
     }
+})
+
+
+
+$(function () {
+
+    $(".draggable").draggable({
+        containment: "#container-draw",
+        scroll: false,
+        stop: function (event, ui) {
+            console.log(this.id);
+            positions[this.id] = ui.position
+            localStorage.positions = JSON.stringify(positions)
+        }
+    });
+
+
 });
 
+function init_drabbable() {
+    
+    $(".draggable").draggable({
+        containment: "#container-draw",
+        scroll: false,
+        stop: function (event, ui) {
+            console.log(this.id);
+            positions[this.id] = ui.position
+            localStorage.positions = JSON.stringify(positions)
+        }
+    });
+    };
 
 
-} );
 //hotkey
 $(document).keypress(function (e) {
     if (e.which == 13) {
