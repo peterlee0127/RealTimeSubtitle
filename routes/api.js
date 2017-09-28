@@ -7,14 +7,16 @@ const fileUpload = require('express-fileupload');
 
 let message = "";
 let showStatus = false;
-
+var DepartdisplaySwitch = false;
+var NamedisplaySwitch = true;
+var JobdisplaySwitch = false;
 
 router.get('/', (req, res) => {
   res.render('index', { title: message,status:showStatus });
 })
 
 router.get('/admin', (req, res) => {
-  res.render('admin', { title: message,status:showStatus});
+  res.render('admin', { title: message,status:showStatus,DepartdisplaySwitch:DepartdisplaySwitch,NamedisplaySwitch:NamedisplaySwitch,JobdisplaySwitch:JobdisplaySwitch});
 });
 
 
