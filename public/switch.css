@@ -6,7 +6,7 @@
     cursor: pointer;
     height: 0px;
     position: relative; 
-
+    left: -20px;top:5px;
 }
 
 .material-switch > label::before {

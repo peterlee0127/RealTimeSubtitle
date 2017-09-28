@@ -88,7 +88,7 @@ $.getJSON("api/list", function (json) {
     list = JSON.parse(json).list;
 
     BindListData();
-
+    $('.draggable').draggable('disable');
 });
 function BindListData() {
 
@@ -142,17 +142,15 @@ function BindListData() {
     SetPosition();
 };
 
-var sPositions = localStorage.positions || "{}",
-    positions = JSON.parse(sPositions);
+var sPositions = '';
+var positions = '';
 
-
-$(function () {
-
-    $.each(positions, function (id, pos) {
-        $("#" + id).css(pos)
-
-    })
+$.getJSON("api/position", function (json) {
+    sPositions = json || "{}",
+        positions = JSON.parse(sPositions);
+    SetPosition();
 });
+
 
 //設定各位置
 function SetPosition() {
@@ -165,7 +163,25 @@ function SetPosition() {
             positions[this.id] = ui.position;
             localStorage.positions = JSON.stringify(positions);
             console.log(sPositions);
-            
+
+
+
+
+            $.ajax
+                ({
+                    type: "post",
+                    dataType: 'json',
+                    async: true,
+                    url: '/api/upload/position',
+                    data: { json: JSON.stringify(positions) },
+                    success: function () {
+                        alert("Thanks!");
+                    },
+                    failure: function () {
+                        alert("Error!");
+                    }
+                });
+
         }
     });
 
@@ -174,6 +190,15 @@ function SetPosition() {
 
     })
 }
+$(function () {
+
+    $.each(positions, function (id, pos) {
+        $("#" + id).css(pos)
+
+    })
+
+
+});
 
 
 

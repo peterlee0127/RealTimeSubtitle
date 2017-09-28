@@ -46,7 +46,7 @@
     <div class="row">
       <div class="col-lg-4">
         <div>Dept. Display</div>
-        <div class="material-switch pull-right" style="left: -20px;top:5px; position: relative;">
+        <div class="material-switch pull-right" >
           <input id="DepartdisplaySwitch" onclick="BindListData()" name="displaySwitch" type="checkbox" <%=DepartStatus?
             "checked" : "" %>/>
           <label for="DepartdisplaySwitch" class="label-primary"></label>
@@ -54,7 +54,7 @@
       </div>
       <div class="col-lg-4">
         <div>Name Display</div>
-        <div class="material-switch pull-right" style="left: -20px;top:5px; position: relative;">
+        <div class="material-switch pull-right" >
           <input id="NamedisplaySwitch" onclick="BindListData()" name="displaySwitch" type="checkbox" <%=NameStatus?
             "checked" : "" %>/>
           <label for="NamedisplaySwitch" class="label-primary"></label>
@@ -62,7 +62,7 @@
       </div>
       <div class="col-lg-4">
         <div>Job Display</div>
-        <div class="material-switch pull-right" style="left: -20px;top:5px; position: relative;">
+        <div class="material-switch pull-right" >
           <input id="JobdisplaySwitch" onclick="BindListData()" name="displaySwitch" type="checkbox" <%=JobStatus? "checked"
             : "" %>/>
           <label for="JobdisplaySwitch" class="label-primary"></label>
@@ -86,7 +86,7 @@
         <button type='button' id="button_EditPosition" style='float:left;' onClick='drabbableDisplay()' class='btn btn-primary '>編輯位置</button>
       </div>
     </div>
-    <div class="row" style=" top:45%;left: 0px; position: fixed;">
+    <div class="row" style=" top:45%;left: -25px; position: fixed;">
       <div class="col-lg-12 ">
         <ul>
           <li class="list-group-item">
@@ -98,7 +98,7 @@
               </div>
               <div class="col-lg-12 ">
 
-                <div class="material-switch pull-right" style="left: -20px;top:5px; position: relative;">
+                <div class="material-switch pull-right" >
                   <input id="displaySwitch" onclick="changeShowStatus()" name="displaySwitch" type="checkbox" <%=status? "checked" : "" %>/>
                   <label for="displaySwitch" class="label-primary"></label>
                 </div>
