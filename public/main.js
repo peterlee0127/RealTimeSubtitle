@@ -2,6 +2,8 @@
 var socket = io();
 var nowText = $("#title").text;
 var showStatus = $("#displaySwitch").is(':checked');
+var list = '';
+var editPosition = false;
 
 //接收訊息並顯示在前端畫面上
 socket.on('new title', function (json) {
@@ -84,32 +86,62 @@ function clickTitle(title_text) {
 
 //將匯入名單轉成按鈕，供直接點選
 $.getJSON("api/list", function (json) {
-    var list = JSON.parse(json).list;
+    list = JSON.parse(json).list;
+
+    BindListData();
+
+});
+function BindListData() {
+
     var list_array = "";
-    var list_draw = "";
+
+    var departStatus = $("#DepartdisplaySwitch").is(':checked');
+    var nameStatus = $("#NamedisplaySwitch").is(':checked');
+    var titleStatus = $("#JobdisplaySwitch").is(':checked');
+
     var col_num = 12 / list.length;
     for (var i = 0; i < list.length; i++) {
 
         var buttonSrc = "<div class='col-lg-" + col_num + "' style='text-align: left;'><ul>";
-        var drawSrc = "";
+
+
+
 
         list[i].forEach(function (element, index) {
-            buttonSrc += "<div class='listbutton' ><button type='button' style='float:left;' onClick=\"";
-            buttonSrc += "clickTitle('" + element + "')\"" + " class='btn btn-primary btn-sm'>" + (index + 1) + "</button><div>" + element + "</div></div> "
 
-            drawSrc += "<div class='draggable ui-widget-content'><p>" + (i + 1) + "-" + (index + 1) + "</p></div>";
+
+            var depart = element.split(' ')[0];
+            var name = element.split(' ')[1].split('/')[0];
+            var title = element.split('/')[1];
+            var buttonText = '';
+            if (departStatus) {
+                buttonText += depart + ' ';
+            }
+            if (nameStatus) {
+                buttonText += name;
+            }
+            if (titleStatus && title != null) {
+                buttonText += '/' + title;
+            }
+
+
+
+            buttonSrc += "<div class='listbutton draggable' ><button type='button' style='float:left;' onClick=\"";
+            buttonSrc += "clickTitle('" + element + "')\"" + " class='btn btn-primary btn-sm'>" + (index + 1) + "</button><div>" + buttonText + "</div></div> "
+
+
         }, this);
         buttonSrc += "</ul></div>";
-        drawSrc += "";
+
 
         list_array += buttonSrc;
-        list_draw += drawSrc;
+
     }
 
     $("#button-array").html(list_array);
-    $("#container-draw").html(list_draw);
 
-});
+
+};
 
 
 var sPositions = localStorage.positions || "{}",
@@ -124,33 +156,30 @@ $.each(positions, function (id, pos) {
 
 
 
-$(function () {
-
-    $(".draggable").draggable({
-        containment: "#container-draw",
-        scroll: false,
-        stop: function (event, ui) {
-            console.log(this.id);
-            positions[this.id] = ui.position
-            localStorage.positions = JSON.stringify(positions)
-        }
-    });
 
 
-});
-
-function init_drabbable() {
-    
-    $(".draggable").draggable({
-        containment: "#container-draw",
-        scroll: false,
-        stop: function (event, ui) {
-            console.log(this.id);
-            positions[this.id] = ui.position
-            localStorage.positions = JSON.stringify(positions)
-        }
-    });
-    };
+function drabbableDisplay() {
+    if (!editPosition) {
+        $(".draggable").draggable({
+            containment: "#container-draw",
+            scroll: true,
+            stop: function (event, ui) {
+                console.log(this.id);
+                positions[this.id] = ui.position
+                localStorage.positions = JSON.stringify(positions)
+            }
+        });
+        $('.draggable').draggable('enable');
+        $("#button_EditPosition").attr('class', 'btn btn-danger ');
+        $("#button_EditPosition").html('編輯完成');
+    }
+    else {
+        $('.draggable').draggable('disable');
+        $("#button_EditPosition").attr('class', 'btn btn-primary');
+        $("#button_EditPosition").html('編輯位置');
+    }
+    editPosition=!editPosition;
+};
 
 
 //hotkey

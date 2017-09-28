@@ -8,6 +8,9 @@ var port = process.env.PORT || 8080;
 var fs = require('fs');
 var message = "";
 var showStatus = false;
+var DepartdisplaySwitch = false;
+var NamedisplaySwitch = true;
+var JobdisplaySwitch = false;
 
 server.listen(port, function () {
   console.log('Server listening at port %d', port);
@@ -22,7 +25,7 @@ app.get('/', (req, res) => {
 })
 app.get('/admin', (req, res) => {
 
-  res.render('admin', { title: message,status:showStatus});
+  res.render('admin', { title: message,status:showStatus,JobdisplaySwitch:JobdisplaySwitch,NamedisplaySwitch:NamedisplaySwitch,DepartdisplaySwitch:DepartdisplaySwitch});
 
 });
 

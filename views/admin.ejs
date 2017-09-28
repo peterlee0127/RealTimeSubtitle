@@ -1,4 +1,4 @@
-<!doctype html>
+<!Doctype html>
 <html lang="en">
 
 <head>
@@ -29,75 +29,113 @@
   </nav>
 
   <div class="container">
-    <ul class="admin">
-      <div class="row" style="padding-top:30px;">
-        <div class="col-lg-12">
-          <div class="messageLog">
-            <h1 align="center" id="title"><%= title %></h1>
-          </div>
+
+    <div class="row" style="padding-top:30px;">
+      <div class="col-lg-12">
+        <div class="messageLog">
+          <h1 align="center" id="title">
+            <%= title %>
+          </h1>
         </div>
-
       </div>
 
-      <hr>
+    </div>
 
-      <button type='button' style='float:left;' onClick='init_drabbable()' class='btn btn-primary '>啟用編輯位置</button>
+    <hr>
 
-      <div class="container-draw" id="container-draw">
-
-
+    <div class="row">
+      <div class="col-lg-4">
+        <div>Dept. Display</div>
+        <div class="material-switch pull-right" style="left: -20px;top:5px; position: relative;">
+          <input id="DepartdisplaySwitch" onclick="BindListData()" name="displaySwitch" type="checkbox" <%=DepartdisplaySwitch?
+            "checked" : "" %>/>
+          <label for="DepartdisplaySwitch" class="label-primary"></label>
+        </div>
       </div>
+      <div class="col-lg-4">
+        <div>Name Display</div>
+        <div class="material-switch pull-right" style="left: -20px;top:5px; position: relative;">
+          <input id="NamedisplaySwitch" onclick="BindListData()" name="displaySwitch" type="checkbox" <%=NamedisplaySwitch?
+            "checked" : "" %>/>
+          <label for="NamedisplaySwitch" class="label-primary"></label>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div>Job Display</div>
+        <div class="material-switch pull-right" style="left: -20px;top:5px; position: relative;">
+          <input id="JobdisplaySwitch" onclick="BindListData()" name="displaySwitch" type="checkbox" <%=JobdisplaySwitch? "checked"
+            : "" %>/>
+          <label for="JobdisplaySwitch" class="label-primary"></label>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-xs-12">
 
-      <div class="row" style=" top:45%;left: 0px; position: fixed;">
-        <div class="col-lg-12 ">
-          <ul>
-            <li class="list-group-item">
-              <div class="row">
-                <div class="col-lg-12 ">
-                  <div> Display</div>
-                  <button type="button" class="btn btn-sm btn-danger" disabled="disabled"> Ctrl + `</button>
-                
-                </div>
-                <div class="col-lg-12 ">
+        <div class="container-draw" id="container-draw">
 
-                  <div class="material-switch pull-right" style="left: -20px;top:5px; position: relative;">
-                    <input id="displaySwitch" onclick="changeShowStatus()" name="displaySwitch" type="checkbox" <%= status? "checked" : "" %>/>
-                    <label for="displaySwitch" class="label-primary"></label>
-                  </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-lg-12">
+        <button type='button' id="button_EditPosition" style='float:left;' onClick='drabbableDisplay()' class='btn btn-primary '>編輯位置</button>
+      </div>
+    </div>
+    <div class="row" style=" top:45%;left: 0px; position: fixed;">
+      <div class="col-lg-12 ">
+        <ul>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-lg-12 ">
+                <div> Display</div>
+                <button type="button" class="btn btn-sm btn-danger" disabled="disabled"> Ctrl + `</button>
+
+              </div>
+              <div class="col-lg-12 ">
+
+                <div class="material-switch pull-right" style="left: -20px;top:5px; position: relative;">
+                  <input id="displaySwitch" onclick="changeShowStatus()" name="displaySwitch" type="checkbox" <%=status? "checked" : "" %>/>
+                  <label for="displaySwitch" class="label-primary"></label>
                 </div>
-               
               </div>
 
+            </div>
 
-            </li>
-          </ul>
-        </div>
+
+          </li>
+        </ul>
       </div>
-      <div class="row" id="button-array">
+    </div>
+    <div class="row" id="button-array">
+    </div>
+
+    <hr>
+    <div class="row" style="padding-bottom:100px">
+      <div class="col-lg-6">
+        <h1>Logo upload</h1>
+        <a href="vTaiwanLogo.png" charset="UTF-8" target="_bland">vTaiwan Logo</a>
+        <form action="/upload/image" id="upload" encType="multipart/form-data" method="post">
+          <input type="file" name="pic" accept="image/*">
+          <input type="submit" class="btn btn-danger">
+        </form>
       </div>
-
-      <hr>
-      <div class="row" style="padding-bottom:100px">
-        <div class="col-lg-6">
-          <h1>Logo upload</h1>
-          <a href="vTaiwanLogo.png" charset="UTF-8" target="_bland">vTaiwan Logo</a>
-          <form action="/upload/image" id="upload" encType="multipart/form-data" method="post">
-            <input type="file" name="pic" accept="image/*">
-            <input type="submit" class="btn btn-danger">
-          </form>
-        </div>
-        <div class="col-lg-6">
-          <h1>JSON upload</h1>
-          <a href="example.json" charset="UTF-8" target="_bland">example</a>
-          <form action="/upload/json" id="upload" encType="multipart/form-data" method="post">
-            <input type="file" name="json" accept="json/*">
-            <input type="submit" class="btn btn-danger">
-          </form>
+      <div class="col-lg-6">
+        <h1>JSON upload</h1>
+        <a href="example.json" charset="UTF-8" target="_bland">example</a>
+        <form action="/upload/json" id="upload" encType="multipart/form-data" method="post">
+          <input type="file" name="json" accept="json/*">
+          <input type="submit" class="btn btn-danger">
+        </form>
 
 
-        </div>
       </div>
-      <!--<h1>List<h1>
+    </div>
+    <!--<h1>List<h1>
     <div>
         <textarea>
          
@@ -105,9 +143,9 @@
     </div>
     -->
 
-      <input class="inputMessage" id="inputField" placeholder="請在此輸入字幕..." /></input>
+    <input class="inputMessage" id="inputField" placeholder="請在此輸入字幕..." />
   </div>
- <%- include include.ejs %>
+  <%- include include.ejs %>
 </body>
 
 </html>
