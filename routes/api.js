@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/admin', (req, res) => {
-  res.render('admin', { title: message,status:showStatus,DepartdisplaySwitch:DepartdisplaySwitch,NamedisplaySwitch:NamedisplaySwitch,JobdisplaySwitch:JobdisplaySwitch});
+  res.render('admin', { title: message,status:showStatus,DepartStatus:DepartdisplaySwitch,NameStatus:NamedisplaySwitch,JobStatus:JobdisplaySwitch});
 });
 
 

@@ -126,8 +126,8 @@ function BindListData() {
 
 
 
-            buttonSrc += "<div class='listbutton draggable' ><button type='button' style='float:left;' onClick=\"";
-            buttonSrc += "clickTitle('" + element + "')\"" + " class='btn btn-primary btn-sm'>" + (index + 1) + "</button><div>" + buttonText + "</div></div> "
+            buttonSrc += "<div class='listbutton draggable' id='drag_" + (i + 1) + '-' + (index + 1) + "' ><button type='button' style='float:left;' onClick=\"";
+            buttonSrc += "clickTitle('" + element + "')\"" + " class='btn btn-primary btn-sm'>" + (i + 1) + '-' + (index + 1) + "</button><div>" + buttonText + "</div></div> "
 
 
         }, this);
@@ -140,35 +140,47 @@ function BindListData() {
 
     $("#button-array").html(list_array);
 
-
+    SetPosition();
 };
-
 
 var sPositions = localStorage.positions || "{}",
     positions = JSON.parse(sPositions);
 
-$.each(positions, function (id, pos) {
-    console.log(id);
-    if (id == "draggable") {
+
+$(function () {
+
+    $.each(positions, function (id, pos) {
         $("#" + id).css(pos)
-    }
-})
 
+    })
+});
 
+//設定各位置
+function SetPosition() {
+
+    $(".draggable").draggable({
+        containment: "#container-draw",
+        scroll: true,
+        stop: function (event, ui) {
+
+            positions[this.id] = ui.position;
+            localStorage.positions = JSON.stringify(positions);
+            console.log(sPositions);
+            
+        }
+    });
+
+    $.each(positions, function (id, pos) {
+        $("#" + id).css(pos)
+
+    })
+}
 
 
 
 function drabbableDisplay() {
     if (!editPosition) {
-        $(".draggable").draggable({
-            containment: "#container-draw",
-            scroll: true,
-            stop: function (event, ui) {
-                console.log(this.id);
-                positions[this.id] = ui.position
-                localStorage.positions = JSON.stringify(positions)
-            }
-        });
+
         $('.draggable').draggable('enable');
         $("#button_EditPosition").attr('class', 'btn btn-danger ');
         $("#button_EditPosition").html('編輯完成');
@@ -178,7 +190,12 @@ function drabbableDisplay() {
         $("#button_EditPosition").attr('class', 'btn btn-primary');
         $("#button_EditPosition").html('編輯位置');
     }
-    editPosition=!editPosition;
+    editPosition = !editPosition;
+
+    $.each(positions, function (id, pos) {
+        $("#" + id).css(pos)
+
+    })
 };
 
 

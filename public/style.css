@@ -117,7 +117,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9dbdb', end
 }
 
 .draggable {
-    width: 110px;
+    width: 130px;
     border:1px solid #000;
     color:#000;
     padding: 0.5em;
