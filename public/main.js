@@ -1,9 +1,8 @@
-
-var socket = io();
-var nowText = $("#title").text;
-var showStatus = $("#displaySwitch").is(':checked');
-var list = '';
-var editPosition = false;
+let socket = io();
+let nowText = $("#title").text;
+let showStatus = $("#displaySwitch").is(':checked');
+let list = '';
+let editPosition = false;
 
 //接收訊息並顯示在前端畫面上
 socket.on('new title', function (json) {
