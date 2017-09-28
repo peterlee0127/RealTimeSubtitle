@@ -7,7 +7,13 @@ module.exports = {
             "jsx": true
         }
     },
-    "rules": {
-        "semi": 2
+     "rules": {
+         "semi": 2,
+         "comma-dangle": ["error", "never"]
+     },
+    "env": {
+        "node": true,
+        "mongo": true,
+        "es6": true
     }
 };
