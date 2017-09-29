@@ -128,7 +128,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9dbdb', end
 
 }
 
-
+.ui-selected{
+  background-color:orange !important;
+     
+  }
 
 
 

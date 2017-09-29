@@ -42,3 +42,7 @@
     background:rgb(17, 89, 184);
     left: 20px;
 }
+#display_Switch
+{
+    cursor: move;
+}
