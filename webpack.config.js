@@ -2,7 +2,8 @@ let path = require('path');
 let webpack = require('webpack');
 
 module.exports = {
-    entry: './app/req.js',
+    entry: {app: path.resolve(__dirname, './app/req.js')
+    },
     output: {
         filename: 'bundle.js',
           path: path.resolve(__dirname, './public/dist')
@@ -18,10 +19,23 @@ module.exports = {
                     presets: ['env']
                 }
             }
-        }
-        ]
+        },
+        {
+            test: /(\.md|\.map)$/,
+            loader: 'null-loader'
+        },
+        {
+            test: /\.json$/,
+            loader: 'json-loader'
+        }]
     },
     node: {
         fs: 'empty'
-    }
+    },
+    plugins: [
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery'} )
+    ]
+
 };

@@ -1,3 +1,8 @@
+import io from 'socket.io-client'
+import jQuery from 'jquery'
+import boostrap from 'bootstrap'
+import ui from 'jquery-ui'
+
 let socket = io();
 let nowText = $('#title').text;
 let showStatus = $('#displaySwitch').is(':checked');
@@ -8,8 +13,6 @@ let editPosition = false;
 socket.on('new title', function (json) {
 
     if (nowText != json.title) {
-
-
 
         var depart = json.title.split('/')[0];
         var name = json.title.split('/')[1];
@@ -24,10 +27,8 @@ socket.on('new title', function (json) {
         if (title != null && title != '') {
             buttonText += '/' + title;
         }
-        console.log(title)
 
         buttonText = $.trim(buttonText);
-
 
 
         if (!showStatus) {

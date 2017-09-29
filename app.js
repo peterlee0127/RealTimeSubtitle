@@ -5,7 +5,9 @@ let path = require('path');
 let bodyParser = require('body-parser');
 let port = process.env.PORT || 8080;
 let server = require('http').createServer(app);
-let io = require('socket.io')(server);
+let io = require('socket.io',{
+   serveClient: false // do not serve the client file, in that case the brfs loader is not needed
+})(server);
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
