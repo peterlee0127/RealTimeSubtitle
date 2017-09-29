@@ -122,11 +122,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9dbdb', end
     border:1px solid #000;
     color:#000;
     padding: 0.5em;
+    margin: 3px;
     float: left;
-    margin: 0 10px 10px 0;
     cursor: move;
-    margin-bottom:20px;
-    position: absolute;
+
 }
 
 
