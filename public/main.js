@@ -104,15 +104,16 @@ function BindListData() {
 
         list[i].forEach(function (element, index) {
 
-            var depart = element.split(' ')[0];
-            var name = element.split(' ')[1].split('/')[0];
-            var title = element.split('/')[1];
+
+            var depart = element.split('/')[0];
+            var name = element.split('/')[1];
+            var title = element.split('/')[2];
             var buttonText = '';
-            if (departStatus) {
-                buttonText += depart + ' ';
+            if (departStatus && depart!=null) {
+                buttonText += depart ;
             }
-            if (nameStatus) {
-                buttonText += name;
+            if (nameStatus && name!=null) {
+                buttonText +=' '+ name;
             }
             if (titleStatus && title != null) {
                 buttonText += '/' + title;
@@ -120,7 +121,7 @@ function BindListData() {
 
 
 
-            buttonSrc += "<div class='listbutton draggable' id='drag_" + (i + 1) + '-' + (index + 1) + "' ><button type='button' style='float:left;' onClick=\"";
+            buttonSrc += "<div class='listbutton draggable' id='drag_" + (i + 1) + '-' + (index + 1) + "' ondrag='ondragging(this.id)' ><button type='button' style='float:left;' onClick=\"";
             buttonSrc += "clickTitle('" + element + "')\"" + " class='btn btn-primary btn-sm'>" + (i + 1) + '-' + (index + 1) + "</button><div>" + buttonText + "</div></div> "
 
 
@@ -137,25 +138,6 @@ function BindListData() {
     SetPosition();
 
 };
-
-
-    function Button(props) {
-        return <button onClick={props.onClick}>Say Hello</button>;
-    }
-
-    function HelloButton() {
-        function handleClick() {
-            alert('Hello!');
-        }
-        return <Button onClick={handleClick} />;
-    }
-
-    ReactDOM.render(
-            <HelloButton />,
-            document.getElementById('button-array')
-            );
-
-
 
 var sPositions = '';
 var positions = '';
@@ -192,6 +174,10 @@ function init_draggble() {
 
         }
     });
+
+
+
+ 
 }
 
 
@@ -234,6 +220,10 @@ function draggableDisplay() {
     })
 };
 
+function ondragging(element_id)
+{
+    $('#'+element_id).css('border','3px solid #d9534f');
+}
 
 //hotkey
 $(document).keypress(function (e) {

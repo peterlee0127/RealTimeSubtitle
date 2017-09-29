@@ -3,19 +3,19 @@
 	"list":
 	[
 		[
-			"depart Name/job",
-			"depart Name/job",
-			"depart Name/job"
+			"depart/Name/job",
+			"depart/Name/job",
+			"depart/Name/job"
 		],
 
 		[
-			"depart Name/job",
-			"depart Name/job"
+			"depart/Name/job",
+			"depart/Name/job"
 		],
 
 		[
-			"depart Name/job",
-			"depart Name/job"
+			"depart/Name/job",
+			"depart/Name/job"
 		]
 	]
 
