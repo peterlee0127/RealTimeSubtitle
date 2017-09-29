@@ -1,4 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import main from './main.js'
+
+require('bootstrap');
+require("jquery");
+require('webpack-jquery-ui/draggable');
+require('webpack-jquery-ui/resizable');
 

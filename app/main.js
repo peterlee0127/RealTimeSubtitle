@@ -1,10 +1,4 @@
 import io from 'socket.io-client'
-import boostrap from 'bootstrap'
-
-var $ = require("jquery");
-require('webpack-jquery-ui/draggable');
-require('webpack-jquery-ui/resizable');
-
 
 let socket = io();
 let nowText = $('#title').text;
@@ -273,6 +267,5 @@ $(document).keydown(function (e) {
         changeShowStatus();
     }
 });
-
 
 

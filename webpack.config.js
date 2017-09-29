@@ -2,7 +2,7 @@ let path = require('path');
 let webpack = require('webpack');
 
 module.exports = {
-    entry: {app: path.resolve(__dirname, './app/req.js')
+    entry: {app: ['./app/req.js', './app/main.js']
     },
     output: {
         filename: 'bundle.js',
