@@ -5,39 +5,60 @@ let list = '';
 let editPosition = false;
 
 // 接收訊息並顯示在前端畫面上
-socket.on('new title', function(json) {
+socket.on('new title', function (json) {
 
     if (nowText != json.title) {
 
+
+
+        var depart = json.title.split('/')[0];
+        var name = json.title.split('/')[1];
+        var title = json.title.split('/')[2];
+        var buttonText = '';
+        if (depart != null && depart != '') {
+            buttonText += depart;
+        }
+        if (name != null && name != '') {
+            buttonText += ' ' + name;
+        }
+        if (title != null && title != '') {
+            buttonText += '/' + title;
+        }
+        console.log(title)
+
+        buttonText = $.trim(buttonText);
+
+
+
         if (!showStatus) {
-            nowText = json.title;
+            nowText = buttonText;
             $('#title').text(nowText);
             return;
         }
-        $('.textbox_bg').fadeOut('fast', function() {
+        $('.textbox_bg').fadeOut('fast', function () {
             // Animation complete.
         });
-        $('#title').animate( {opacity: 0}, 200, function() {
-            $('#title').text(json.title).animate( {opacity: 1}, 200);
+        $('#title').animate({ opacity: 0 }, 200, function () {
+            $('#title').text(buttonText).animate({ opacity: 1 }, 200);
         });
-        nowText = json.title;
-        $('.textbox_bg').fadeIn('fast', function() {
-             // Animation complete.
+        nowText = buttonText;
+        $('.textbox_bg').fadeIn('fast', function () {
+            // Animation complete.
         });
     }
 });
 
-socket.on('new status', function(json) {
+socket.on('new status', function (json) {
     // 接收顯示狀態是否改變
     showStatus = json.status;
     $('#displaySwitch').attr('checked', showStatus);
 
     if (showStatus == false) {
-        $('.textbox_bg').fadeOut('slow', function() {
+        $('.textbox_bg').fadeOut('slow', function () {
             // Animation complete.
         });
     } else {
-        $('.textbox_bg').fadeIn('slow', function() {
+        $('.textbox_bg').fadeIn('slow', function () {
             // Animation complete.
         });
     }
@@ -45,7 +66,9 @@ socket.on('new status', function(json) {
 
 // 送出訊息(訊息,顯示狀態)
 function sendNewTitle(text) {
-    socket.emit('title', {title: text});
+
+
+    socket.emit('title', { title: text });
 }
 
 // 更改顯示狀態
@@ -70,7 +93,7 @@ function newTitle() {
 }
 
 // 點選匯入的名單
-function clickTitle(title_text){
+function clickTitle(title_text) {
 
     if (title_text != '') {
         $('#inputField').val(title_text);
@@ -79,11 +102,11 @@ function clickTitle(title_text){
 };
 
 //將匯入名單轉成按鈕，供直接點選
-$.getJSON('api/list', function(json) {
+$.getJSON('api/list', function (json) {
     list = JSON.parse(json).list;
 
     BindListData();
-  
+
     $('.draggable').draggable('disable');
 });
 
@@ -109,13 +132,13 @@ function BindListData() {
             var name = element.split('/')[1];
             var title = element.split('/')[2];
             var buttonText = '';
-            if (departStatus && depart!=null) {
-                buttonText += depart ;
+            if (departStatus && depart != null && depart != '') {
+                buttonText += depart;
             }
-            if (nameStatus && name!=null) {
-                buttonText +=' '+ name;
+            if (nameStatus && name != null && name != '') {
+                buttonText += ' ' + name;
             }
-            if (titleStatus && title != null) {
+            if (titleStatus && title != null && title != '') {
                 buttonText += '/' + title;
             }
 
@@ -176,8 +199,21 @@ function init_draggble() {
     });
 
 
+    $("#display_Switch").draggable({
+    });
 
- 
+
+
+    $("#container-draw").resizable({
+
+        stop: function (event, ui) {
+
+        }
+    })
+
+   
+
+
 }
 
 
@@ -220,9 +256,8 @@ function draggableDisplay() {
     })
 };
 
-function ondragging(element_id)
-{
-    $('#'+element_id).css('border','3px solid #d9534f');
+function ondragging(element_id) {
+    $('#' + element_id).css('border', '3px solid #d9534f');
 }
 
 //hotkey
