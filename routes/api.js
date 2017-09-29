@@ -26,25 +26,26 @@ module.exports = function (io) {
 
 
   router.get('/api/list', (req, res) => {
-    let json = fs.readFileSync('./public/upload/list.json', 'utf8');
-    if (json) {
-      res.json(json);
-    } else {
-      res.json({});
-    }
+    fs.readFile('./public/upload/list.json', 'utf8', (error,json) => {
+        if (!error) {
+            res.json(json);
+        } else {
+            res.json({});
+        } 
+    });
   });
 
 
   router.get('/api/position', (req, res) => {
-    let json = fs.readFileSync('./public/upload/position.json', 'utf8');
-    if (json) {
-      res.json(json);
-    } else {
-      res.json({});
-    }
+    fs.readFile('./public/upload/position.json', 'utf8', (error,json)=> {
+        if (!error) {
+            res.json(json);
+        } else {
+            res.json({});
+        }    
+    });
+
   });
-
-
 
 
   router.use(fileUpload());
@@ -62,6 +63,11 @@ module.exports = function (io) {
     if (!req.files.json) {
       return res.status(400).send('No files were uploaded.');
     } else {
+    var stream = fs.createWriteStream("./public/upload/position.json");
+    stream.once('open', function (fd) {
+      stream.write({});
+      stream.end();
+    });
       let file = req.files.json;
       handlefile(file, res, './public/upload/list.json');
     }
