@@ -63,7 +63,7 @@ module.exports = function (io) {
     if (!req.files.json) {
       return res.status(400).send('No files were uploaded.');
     } else {
-      fs.writeFile('./public/upload/position.json', JSON.stringify({}),'utf-8');
+      fs.writeFile('./public/upload/position.json', JSON.stringify({}),'utf-8',function(){});
       let file = req.files.json;
       handlefile(file, res, './public/upload/list.json');
     }
