@@ -1,90 +1,85 @@
 let socket = io();
-let nowText = $("#title").text;
-let showStatus = $("#displaySwitch").is(':checked');
+let nowText = $('#title').text;
+let showStatus = $('#displaySwitch').is(':checked');
 let list = '';
 let editPosition = false;
 
-//接收訊息並顯示在前端畫面上
-socket.on('new title', function (json) {
+// 接收訊息並顯示在前端畫面上
+socket.on('new title', function(json) {
 
     if (nowText != json.title) {
 
         if (!showStatus) {
             nowText = json.title;
-            $("#title").text(nowText);
+            $('#title').text(nowText);
             return;
         }
-        $(".textbox_bg").fadeOut("fast", function () {
+        $('.textbox_bg').fadeOut('fast', function() {
             // Animation complete.
         });
-        $("#title").animate({ opacity: 0 }, 200, function () {
-            $("#title").text(json.title).animate({ opacity: 1 }, 200);
+        $('#title').animate( {opacity: 0}, 200, function() {
+            $('#title').text(json.title).animate( {opacity: 1}, 200);
         });
         nowText = json.title;
-        $(".textbox_bg").fadeIn("fast", function () {
-            // Animation complete.
+        $('.textbox_bg').fadeIn('fast', function() {
+             // Animation complete.
         });
     }
-
 });
 
-socket.on('new status', function (json) {
-    //接收顯示狀態是否改變
+socket.on('new status', function(json) {
+    // 接收顯示狀態是否改變
     showStatus = json.status;
-    $("#displaySwitch").attr("checked", showStatus);
+    $('#displaySwitch').attr('checked', showStatus);
 
     if (showStatus == false) {
-        $(".textbox_bg").fadeOut("slow", function () {
+        $('.textbox_bg').fadeOut('slow', function() {
             // Animation complete.
         });
-    }
-    else {
-        $(".textbox_bg").fadeIn("slow", function () {
+    } else {
+        $('.textbox_bg').fadeIn('slow', function() {
             // Animation complete.
         });
     }
 });
 
-//送出訊息(訊息,顯示狀態)
+// 送出訊息(訊息,顯示狀態)
 function sendNewTitle(text) {
-    socket.emit('title', { title: text });
+    socket.emit('title', {title: text});
 }
 
-
-//更改顯示狀態
+// 更改顯示狀態
 function changeShowStatus() {
-
-    if (nowText == "") {
-        $("#displaySwitch").attr("checked", false);
+    if (nowText == '') {
+        $('#displaySwitch').attr('checked', false);
         return;
     }
     socket.emit('status', {
-        status: $("#displaySwitch").is(':checked')
+        status: $('#displaySwitch').is(':checked')
     });
-
 }
 
-//輸入新訊息
+// 輸入新訊息
 function newTitle() {
-    var data = $("#inputField").val();
-    if (data == "") {
+    var data = $('#inputField').val();
+    if (data == '') {
         return
     }
     sendNewTitle(data);
-    $("#inputField").val('');
+    $('#inputField').val('');
 }
 
-//點選匯入的名單
-function clickTitle(title_text) {
+// 點選匯入的名單
+function clickTitle(title_text){
 
     if (title_text != '') {
-        $("#inputField").val(title_text);
+        $('#inputField').val(title_text);
         newTitle();
     }
 };
 
 //將匯入名單轉成按鈕，供直接點選
-$.getJSON("api/list", function (json) {
+$.getJSON('api/list', function(json) {
     list = JSON.parse(json).list;
 
     BindListData();
@@ -95,7 +90,7 @@ $.getJSON("api/list", function (json) {
 //劃出List
 function BindListData() {
 
-    var list_array = "";
+    var list_array = '';
 
     var departStatus = $("#DepartdisplaySwitch").is(':checked');
     var nameStatus = $("#NamedisplaySwitch").is(':checked');
@@ -105,8 +100,6 @@ function BindListData() {
     for (var i = 0; i < list.length; i++) {
 
         var buttonSrc = "<div class='col-lg-" + col_num + "' style='text-align: left;'>";
-
-
 
 
         list[i].forEach(function (element, index) {
@@ -139,8 +132,7 @@ function BindListData() {
         list_array += buttonSrc;
 
     }
-
-    $("#button-array").html(list_array);
+ //   $("#button-array").html(list_array);
 
     init_draggble();
     SetPosition();
