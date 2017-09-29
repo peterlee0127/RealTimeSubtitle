@@ -27,15 +27,31 @@ module.exports = {
         {
             test: /\.json$/,
             loader: 'json-loader'
-        }]
+        },
+         {
+        test: /\.(jpe?g|png|gif)$/i,
+        loader:"file-loader",
+            query:{
+                name:'[name].[ext]',
+                outputPath:'images/'
+            }
+        },
+        {
+            test: /\.css$/,
+            loaders: ["style-loader","css-loader"]
+        }
+        ]
     },
     node: {
         fs: 'empty'
     },
     plugins: [
-      new webpack.ProvidePlugin({
-        $: 'jquery',
-        jQuery: 'jquery'} )
+        new webpack.ProvidePlugin({
+    'window.jQuery'    : 'jquery',
+    'window.$'         : 'jquery',
+    'jQuery'           : 'jquery',
+    '$'                : 'jquery'
+        })
     ]
 
 };

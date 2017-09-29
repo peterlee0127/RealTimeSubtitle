@@ -1,7 +1,10 @@
 import io from 'socket.io-client'
-import jQuery from 'jquery'
 import boostrap from 'bootstrap'
-import ui from 'jquery-ui'
+
+var $ = require("jquery");
+require('webpack-jquery-ui/draggable');
+require('webpack-jquery-ui/resizable');
+
 
 let socket = io();
 let nowText = $('#title').text;
@@ -212,12 +215,7 @@ function init_draggble() {
         }
     })
 
-   
-
-
 }
-
-
 
 //切換編輯按鈕 儲存
 function draggableDisplay() {
