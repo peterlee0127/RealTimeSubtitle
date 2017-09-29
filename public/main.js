@@ -184,7 +184,21 @@ function init_draggble() {
     });
 
 
+    $("#container-draw").resizable({
+        
+        stop: function(event, ui) {
 
+        //     console.log(ui.size.width/ui.originalSize.width);
+        //     console.log(  ui.size.height/ui.originalSize.height);
+        //     $.each(positions, function (id, pos) {
+        //         $("#" + id).css('left',pos.left*(ui.size.width/ui.originalSize.width) )
+        //         $("#" + id).css('top',pos.top*( ui.size.height/ui.originalSize.height) )
+        // console.log( pos.left);
+        //     })
+
+          
+        }
+    })
  
 }
 
