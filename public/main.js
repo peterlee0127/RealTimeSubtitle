@@ -83,8 +83,11 @@ $.getJSON('api/list', function(json) {
     list = JSON.parse(json).list;
 
     BindListData();
+  
     $('.draggable').draggable('disable');
 });
+
+//劃出List
 function BindListData() {
 
     var list_array = '';
@@ -96,7 +99,7 @@ function BindListData() {
     var col_num = 12 / list.length;
     for (var i = 0; i < list.length; i++) {
 
-        var buttonSrc = "<div class='col-lg-" + col_num + "' style='text-align: left;'><ul>";
+        var buttonSrc = "<div class='col-lg-" + col_num + "' style='text-align: left;'>";
 
 
         list[i].forEach(function (element, index) {
@@ -122,7 +125,7 @@ function BindListData() {
 
 
         }, this);
-        buttonSrc += "</ul></div>";
+        buttonSrc += "</div>";
 
 
         list_array += buttonSrc;
@@ -130,7 +133,9 @@ function BindListData() {
     }
  //   $("#button-array").html(list_array);
 
+    init_draggble();
     SetPosition();
+
 };
 
 
@@ -165,6 +170,17 @@ $.getJSON("api/position", function (json) {
 //設定各位置
 function SetPosition() {
 
+    $.each(positions, function (id, pos) {
+
+        $("#" + id).css(pos)
+        $("#" + id).css('position', 'absolute')
+
+    })
+
+}
+
+//建立draggble事件連結
+function init_draggble() {
     $(".draggable").draggable({
         containment: "#container-draw",
         scroll: true,
@@ -172,47 +188,16 @@ function SetPosition() {
 
             positions[this.id] = ui.position;
             localStorage.positions = JSON.stringify(positions);
-            console.log(sPositions);
-
-
-
-
-            $.ajax
-                ({
-                    type: "post",
-                    dataType: 'json',
-                    async: true,
-                    url: '/api/upload/position',
-                    data: { json: JSON.stringify(positions) },
-                    success: function () {
-                        alert("Thanks!");
-                    },
-                    failure: function () {
-                        alert("Error!");
-                    }
-                });
+            BindListData();
 
         }
     });
-
-    $.each(positions, function (id, pos) {
-        $("#" + id).css(pos)
-
-    })
 }
-$(function () {
-
-    $.each(positions, function (id, pos) {
-        $("#" + id).css(pos)
-
-    })
-
-
-});
 
 
 
-function drabbableDisplay() {
+//切換編輯按鈕 儲存
+function draggableDisplay() {
     if (!editPosition) {
 
         $('.draggable').draggable('enable');
@@ -223,6 +208,23 @@ function drabbableDisplay() {
         $('.draggable').draggable('disable');
         $("#button_EditPosition").attr('class', 'btn btn-primary');
         $("#button_EditPosition").html('編輯位置');
+
+        $.ajax
+            ({
+                type: "post",
+                dataType: 'json',
+                async: true,
+                url: '/api/upload/position',
+                data: { json: JSON.stringify(positions) },
+                success: function () {
+                    console.log('OK');
+                },
+                failure: function () {
+                    console.log('err');
+                }
+            });
+
+
     }
     editPosition = !editPosition;
 
