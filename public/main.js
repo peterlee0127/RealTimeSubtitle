@@ -132,7 +132,7 @@ function BindListData() {
         list_array += buttonSrc;
 
     }
- //   $("#button-array").html(list_array);
+    $("#button-array").html(list_array);
 
     init_draggble();
     SetPosition();

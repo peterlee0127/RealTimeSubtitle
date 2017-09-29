@@ -29,3 +29,5 @@ xcuserdata/
 list.json
 .vscode/launch.json
 upload
+position.json
+dist
