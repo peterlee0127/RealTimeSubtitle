@@ -2,7 +2,7 @@ let path = require('path');
 let webpack = require('webpack');
 
 module.exports = {
-    entry: {app: ['./app/req.js', './app/main.js']
+    entry: { app: ['./app/req.js', './app/main.js']
     },
     output: {
         filename: 'bundle.js',
@@ -11,14 +11,12 @@ module.exports = {
     module: {
         rules: [
         {
-            test: /\.js$/,
-            exclude: /(node_modules|bower_components)/,
-            use: {
-                loader: 'babel-loader',
-                options: {
-                    presets: ['env']
-                }
-            }
+              test: /.jsx?$/,
+              loader: 'babel-loader',
+              exclude: /node_modules/,
+              query: {
+                presets: ['es2015', 'react']
+              }
         },
         {
             test: /(\.md|\.map)$/,
@@ -43,15 +41,20 @@ module.exports = {
         ]
     },
     node: {
-        fs: 'empty'
+        fs: 'empty',
+        dgram: 'empty',
+        fs: 'empty',
+        net: 'empty',
+        tls: 'empty',
+        child_process: 'empty'
     },
     plugins: [
-        new webpack.ProvidePlugin({
-    'window.jQuery'    : 'jquery',
-    'window.$'         : 'jquery',
-    'jQuery'           : 'jquery',
-    '$'                : 'jquery'
-        })
+      new webpack.ProvidePlugin({
+          'window.jQuery'    : 'jquery',
+          'window.$'         : 'jquery',
+          'jQuery'           : 'jquery',
+          '$'                : 'jquery'
+      })
     ]
 
 };
