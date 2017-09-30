@@ -1,5 +1,10 @@
 import io from 'socket.io-client'
 
+var $ = require("jquery");
+require('webpack-jquery-ui/draggable');
+require('webpack-jquery-ui/resizable');
+
+
 let socket = io();
 let nowText = $('#title').text;
 let showStatus = $('#displaySwitch').is(':checked');
