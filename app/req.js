@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-
+var $ = require("jquery");
 require('bootstrap');
 require('jquery');
 require('webpack-jquery-ui/draggable');
@@ -16,7 +16,6 @@ function BindListData() {
 
 function TopSwitch(props) {
   return (
-
     <div className="col-lg-4">
       <div>{props.name}   </div>
       <div className="material-switch pull-right">
@@ -24,11 +23,9 @@ function TopSwitch(props) {
         <label htmlFor={props.name} className="label-primary"></label>
       </div>
     </div>
-
- 
   );
 }
-function TopSwitchUI() {
+function DisplayTopSwitch() {
   return (
     <div className="row">
       <TopSwitch name='Depart Display' />
@@ -40,24 +37,26 @@ function TopSwitchUI() {
 
 
 ReactDOM.render(
-  TopSwitchUI(),
+  DisplayTopSwitch(),
   document.getElementById('setting-switch')
 );
 
+function clickSwitch() {
+  alert("23232");
+  // $('#displaySwitch').click();
+  // changeShowStatus()
+}
 
-function DisplaySwitch() {
+function DisplayControlSwitch() {
   return (
-
     <div className="row">
       <div className="col-lg-12 ">
         <div> Display</div>
-        <button type="button" className="btn btn-sm btn-danger" onclick="$('#displaySwitch').click();changeShowStatus()"> Ctrl + `</button>
-
+        <button type="button" className="btn btn-sm btn-danger" onClick={ clickSwitch() }> Ctrl + ``</button>
       </div>
       <div className="col-lg-12 ">
-
         <div className="material-switch pull-right">
-          <input id="displaySwitch" onclick="changeShowStatus()" name="displaySwitch" type="checkbox" />
+          <input id="displaySwitch" onClick={ clickSwitch() } name="displaySwitch" type="checkbox" />
           <label htmlFor="displaySwitch" className="label-primary"></label>
         </div>
       </div>
@@ -67,27 +66,7 @@ function DisplaySwitch() {
 }
 
 
-
 ReactDOM.render(
-  DisplaySwitch(),
+  DisplayControlSwitch(),
   document.getElementById('display_Switch')
 );
-
-
-// const deparDiv = <div>Dept. Display</div>
-//               <div class="col-lg-4">
-//         <div>Name Display</div>
-//         <div class="material-switch pull-right">
-//           <input id="NamedisplaySwitch" onclick="BindListData()" name="displaySwitch" type="checkbox"
-//       //    <%=NameStatus? "checked" : "" %>/>
-//           <label for="NamedisplaySwitch" class="label-primary"></label>
-//         </div>
-//       </div>
-//       <div class="col-lg-4">
-//         <div>Job Display</div>
-//         <div class="material-switch pull-right">
-//           <input id="JobdisplaySwitch" onclick="BindListData()" name="displaySwitch" type="checkbox" <%=JobStatus? "checked" : "" %>/>
-//           <label for="JobdisplaySwitch" class="label-primary"></label>
-//         </div>
-//         // <TopSwitchUI name='Depart Display' onclick='BindListData()'>
-//         // <TopSwitchUI name="Name Display"> onclick='BindListData()'>,
