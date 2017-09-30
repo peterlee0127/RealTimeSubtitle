@@ -63,11 +63,7 @@ module.exports = function (io) {
     if (!req.files.json) {
       return res.status(400).send('No files were uploaded.');
     } else {
-    var stream = fs.createWriteStream("./public/upload/position.json");
-    stream.once('open', function (fd) {
-      stream.write({});
-      stream.end();
-    });
+      fs.writeFile('./public/upload/position.json', JSON.stringify({}),'utf-8',function(){});
       let file = req.files.json;
       handlefile(file, res, './public/upload/list.json');
     }
@@ -76,15 +72,12 @@ module.exports = function (io) {
   router.post('/api/upload/position', function (req, res) {
     res.setHeader('Content-Type', 'text/plain')
     console.log(req.body.json);
-    var fs = require('fs');
     var stream = fs.createWriteStream("./public/upload/position.json");
     stream.once('open', function (fd) {
       stream.write(req.body.json);
       stream.end();
     });
-
-    res.end("ok");
-
+    res.redirect('/admin');
   });
 
 

@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Real Time Board</title>
+  <title>PDIS - Real Time Subtitle</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="bootstrap.css">
   <link rel="stylesheet" href="switch.css">
@@ -46,59 +46,64 @@
     <div class="row">
       <div class="col-lg-4">
         <div>Dept. Display</div>
-        <div class="material-switch pull-right" >
-          <input id="DepartdisplaySwitch" onclick="BindListData()" name="displaySwitch" type="checkbox" <%=DepartStatus?
-            "checked" : "" %>/>
+        <div class="material-switch pull-right">
+          <input id="DepartdisplaySwitch" onclick="BindListData()" name="displaySwitch" type="checkbox" <%=DepartStatus? "checked"
+            : "" %>/>
           <label for="DepartdisplaySwitch" class="label-primary"></label>
         </div>
       </div>
       <div class="col-lg-4">
         <div>Name Display</div>
-        <div class="material-switch pull-right" >
-          <input id="NamedisplaySwitch" onclick="BindListData()" name="displaySwitch" type="checkbox" <%=NameStatus?
-            "checked" : "" %>/>
+        <div class="material-switch pull-right">
+          <input id="NamedisplaySwitch" onclick="BindListData()" name="displaySwitch" type="checkbox" <%=NameStatus? "checked" : ""
+            %>/>
           <label for="NamedisplaySwitch" class="label-primary"></label>
         </div>
       </div>
       <div class="col-lg-4">
         <div>Job Display</div>
-        <div class="material-switch pull-right" >
-          <input id="JobdisplaySwitch" onclick="BindListData()" name="displaySwitch" type="checkbox" <%=JobStatus? "checked"
-            : "" %>/>
+        <div class="material-switch pull-right">
+          <input id="JobdisplaySwitch" onclick="BindListData()" name="displaySwitch" type="checkbox" <%=JobStatus? "checked" : "" %>/>
           <label for="JobdisplaySwitch" class="label-primary"></label>
         </div>
       </div>
     </div>
     <hr>
-    <div class="row">
-      <div class="col-xs-12">
-
-        <div class="container-draw" id="container-draw">
-
-
-        </div>
-      </div>
-    </div>
-
 
     <div class="row">
       <div class="col-lg-12">
-        <button type='button' id="button_EditPosition" style='float:left;' onClick='drabbableDisplay()' class='btn btn-primary '>編輯位置</button>
+        <button type='button' id="button_EditPosition" style='float:left;' onClick='draggableDisplay()' class='btn btn-primary '>編輯位置</button>
       </div>
     </div>
+
+    <div id="draggble_panel">
+      <div class="row">
+        <div class="col-xs-12">
+
+          <div class="container-draw" id="container-draw">
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="row" id="button-array">
+      </div>
+    </div>
+
     <div class="row" style=" top:45%;left: -25px; position: fixed;">
       <div class="col-lg-12 ">
         <ul>
-          <li class="list-group-item">
+          <li class="list-group-item" id="display_Switch">
             <div class="row">
               <div class="col-lg-12 ">
                 <div> Display</div>
-                <button type="button" class="btn btn-sm btn-danger" onclick="$('#displaySwitch').click();changeShowStatus()" > Ctrl + `</button>
+                <button type="button" class="btn btn-sm btn-danger" onclick="$('#displaySwitch').click();changeShowStatus()"> Ctrl + `</button>
 
               </div>
               <div class="col-lg-12 ">
 
-                <div class="material-switch pull-right" >
+                <div class="material-switch pull-right">
                   <input id="displaySwitch" onclick="changeShowStatus()" name="displaySwitch" type="checkbox" <%=status? "checked" : "" %>/>
                   <label for="displaySwitch" class="label-primary"></label>
                 </div>
@@ -111,8 +116,7 @@
         </ul>
       </div>
     </div>
-    <div class="row" id="button-array">
-    </div>
+
 
     <hr>
     <div class="row" style="padding-bottom:100px">
