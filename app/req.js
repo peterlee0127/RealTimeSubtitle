@@ -8,32 +8,36 @@ require('jquery');
 require('webpack-jquery-ui/draggable');
 require('webpack-jquery-ui/resizable');
 
-// function TopSwitchUI(props) {
-//     return (
-//       <div class="col-lg-4">
-//         <div>{props.name}
-//         <div class="material-switch pull-right">
-//     )
-// }
-
 function BindListData(){
-  alert("dd");
+    alert('dd');
 }
 
 
 function TopSwitch(props) {
   return (
-    <div>
-      <input id="DepartdisplaySwitch" onClick={BindListData} name={props.name} type="checkbox"></input>
-      <label for="DepartdisplaySwitch" class="label-primary">{props.name}</label>
+    <div className="col-lg-4">
+      <div>{props.name}
+      <div className="material-switch pull-right">
+        <input id="DepartdisplaySwitch" onClick={BindListData} name={props.name} type="checkbox"></input>
+        <label htmlFor="DepartdisplaySwitch" className="label-primary"></label>
+      </div>
+      </div>
     </div>
  );
 }
+function TopSwitchUI() {
+    return (
+      <div className="row">
+        <TopSwitch name='Depart Display'/>
+        <TopSwitch name='Name Display'/>
+        <TopSwitch name='Job Display'/>
+      </div>
+    )
+}
+
 
 ReactDOM.render(
-  [<TopSwitch name='Depart Display'/>,
-  <TopSwitch name='Name Display'/>,
-  <TopSwitch name='Depart Display'/>],
+  TopSwitchUI(),
   document.getElementById('setting-switch')
 );
 
