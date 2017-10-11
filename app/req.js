@@ -9,28 +9,37 @@ require('jquery');
 require('webpack-jquery-ui/draggable');
 require('webpack-jquery-ui/resizable');
 
-function BindListData() {
-  alert('dd');
-}
 
-
-function TopSwitch(props) {
-  return (
+class SwitchButton extends React.Component {
+    constructor(props) {
+    super(props);
+    this.name = props.name;
+  }
+  handleClick() {
+    console.log(this.name);
+  }
+  render() {
+    return (
     <div className="col-lg-4">
-      <div>{props.name}   </div>
-      <div className="material-switch pull-right">
-        <input id={props.name} onClick={BindListData} name={props.name} type="checkbox"></input>
-        <label htmlFor={props.name} className="label-primary"></label>
-      </div>
+        <div>{this.name}   </div>
+        <div className="material-switch pull-right">
+            <input id={this.name} onClick={this.handleClick.bind(this)} name={this.name} type="checkbox"></input>
+            <label htmlFor={this.name} className="label-primary"></label>
+        </div>
     </div>
-  );
-}
+  );   
+  }
+} 
+
+
+ 
+
 function DisplayTopSwitch() {
   return (
     <div className="row">
-      <TopSwitch name='Depart Display' />
-      <TopSwitch name='Name Display' />
-      <TopSwitch name='Job Display' />
+      <SwitchButton name='Depart Display' />
+      <SwitchButton name='Name Display' />
+      <SwitchButton name='Job Display' />
     </div >
   )
 }
@@ -42,7 +51,6 @@ ReactDOM.render(
 );
 
 function clickSwitch() {
-  alert("23232");
   // $('#displaySwitch').click();
   // changeShowStatus()
 }
