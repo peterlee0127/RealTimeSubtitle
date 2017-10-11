@@ -6,7 +6,12 @@ module.exports = {
     },
     output: {
         filename: 'bundle.js',
-          path: path.resolve(__dirname, './public/dist')
+        path: path.resolve(__dirname, './public/dist'),
+        publicPath: '/'
+    },
+    devServer: {
+        inline: false,
+        contentBase: "./public/dist",
     },
     module: {
         rules: [
@@ -55,6 +60,6 @@ module.exports = {
           'jQuery'           : 'jquery',
           '$'                : 'jquery'
       })
-    ]
-
+    ],
+    devtool: 'source-map'
 };
