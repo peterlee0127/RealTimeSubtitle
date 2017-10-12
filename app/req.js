@@ -3,6 +3,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui/styles';
+import green from 'material-ui/colors/green';
+import Switch from 'material-ui/Switch';
+
 var $ = require("jquery");
 require('bootstrap');
 require('jquery');
