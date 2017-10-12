@@ -33,10 +33,7 @@ class SwitchButton extends React.Component {
     return (
       <div className="col-lg-4">
         <div>{this.name}   </div>
-        <div className="material-switch pull-right">
-          <input id={this.name} onClick={this.handleClick.bind(this)} name={this.name}  type="checkbox"></input>
-          <label htmlFor={this.name} className="label-primary"></label>
-        </div>
+          <Switch onChange={this.handleClick.bind(this)} aria-label="Switch"/>
       </div>
     );
   }
