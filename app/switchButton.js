@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import green from 'material-ui/colors/green';
 import Switch from 'material-ui/Switch';
+import Grid from 'material-ui/Grid';
 
 /*
 var $ = require("jquery");
@@ -30,10 +31,10 @@ class SwitchButton extends React.Component {
   }
   render() {
     return (
-      <div className="col-lg-4">
-        <div>{this.name}   </div>
-          <Switch onChange={this.handleClick.bind(this)} checked={this.checked} aria-label="Switch"/>
-      </div>
+        <Grid item xs={12}>
+            <div>{this.name}</div>
+            <Switch onChange={this.handleClick.bind(this)} checked={this.checked} aria-label="Switch"/>
+        </Grid>
     );
   }
 }
@@ -41,11 +42,14 @@ class SwitchButton extends React.Component {
 
 function DisplayTopSwitch() {
   return (
-    <div className="row">
-      <SwitchButton name='Depart Display' checked={DepartStatus}/>
-      <SwitchButton name='Name Display'  checked={NameStatus}/>
-      <SwitchButton name='Job Display'  checked={JobStatus}/>
-    </div >
+    <div>
+    <Grid container spacing={24}>
+        <SwitchButton name='Depart Display' checked={DepartStatus}/>
+        <SwitchButton name='Name Display'  checked={NameStatus}/>
+        <SwitchButton name='Job Display'  checked={JobStatus}/>
+    </Grid>
+    </div>
+   
   )
 }
 
