@@ -55,7 +55,7 @@ ReactDOM.render(
   document.getElementById('setting-switch')
 );
 
-export default SwitchButton;
+//export default SwitchButton;
 
 function clickSwitch() {
   // $('#displaySwitch').click();

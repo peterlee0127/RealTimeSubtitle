@@ -13,7 +13,7 @@ import MenuIcon from 'material-ui-icons/Menu';
 
 const styles = theme => ({
   root: {
-    marginTop: theme.spacing.unit * 3,
+    marginTop: 0,
     width: '100%',
   },
   flex: {
@@ -46,7 +46,8 @@ function ButtonAppBar(props) {
 ButtonAppBar.propTypes = {
  classes: PropTypes.object.isRequired,
 };
-export default withStyles(styles)(ButtonAppBar);
+
+//export default withStyles(styles)(ButtonAppBar);
 
 let NavBar = withStyles(styles)(ButtonAppBar);
 ReactDOM.render(
