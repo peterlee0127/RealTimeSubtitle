@@ -8,46 +8,43 @@ import { withStyles } from 'material-ui/styles';
 import green from 'material-ui/colors/green';
 import Switch from 'material-ui/Switch';
 
+/*
 var $ = require("jquery");
 require('bootstrap');
 require('jquery');
 require('webpack-jquery-ui/draggable');
 require('webpack-jquery-ui/resizable');
-
+*/
 
 class SwitchButton extends React.Component {
   constructor(props) {
     super(props);
     this.name = props.name;
-
-  
+    this.checked = props.checked;
+    console.log(this.name+" "+ this.checked);
   }
   handleClick() {
     this.checked =! this.checked ;
-    console.log(this.name);
-    console.log(this.checked);
+    console.log(this.name+" "+ this.checked);
     //這裡要render 按鈕的字樣
-
   }
   render() {
     return (
       <div className="col-lg-4">
         <div>{this.name}   </div>
-          <Switch onChange={this.handleClick.bind(this)} aria-label="Switch"/>
+          <Switch onChange={this.handleClick.bind(this)} checked={this.checked} aria-label="Switch"/>
       </div>
     );
   }
 }
 
 
-
-
 function DisplayTopSwitch() {
   return (
     <div className="row">
-      <SwitchButton name='Depart Display'  />
-      <SwitchButton name='Name Display' />
-      <SwitchButton name='Job Display'  />
+      <SwitchButton name='Depart Display' checked={DepartStatus}/>
+      <SwitchButton name='Name Display'  checked={NameStatus}/>
+      <SwitchButton name='Job Display'  checked={JobStatus}/>
     </div >
   )
 }
@@ -57,6 +54,8 @@ ReactDOM.render(
   DisplayTopSwitch(),
   document.getElementById('setting-switch')
 );
+
+export default SwitchButton;
 
 function clickSwitch() {
   // $('#displaySwitch').click();

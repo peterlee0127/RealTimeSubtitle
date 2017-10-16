@@ -5,29 +5,10 @@
   <meta charset="UTF-8">
   <title>PDIS - Real Time Subtitle</title>
   <link rel="stylesheet" href="stylesheets/style.css">
-  <link rel="stylesheet" href="stylesheets/bootstrap.css">
-  <link rel="stylesheet" href="stylesheets/switch.css">
 </head>
 
 <body>
-  <!-- Image and text -->
-  <nav class="navbar navbar-dark bg-inverse">
-    <ul class="nav navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link " style="color:white;font-weight:bold;" href="admin">PDIS Live <span class="sr-only">(current)</span></a>
-      </li>
-      <!-- <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li> -->
-    </ul>
-  </nav>
-
+  <div id="navBar"></div>
   <div class="container">
 
     <div class="row" style="padding-top:30px;">
@@ -53,7 +34,6 @@
         <button type='button' id="button_EditPosition" style='float:left;' onClick='draggableDisplay()' class='btn btn-primary '>編輯位置</button>
       </div>
     </div>
-
     <div id="draggble_panel">
       <div class="row">
         <div class="col-xs-12">
@@ -110,6 +90,11 @@
 
     <input class="inputMessage" id="inputField" placeholder="請在此輸入字幕..." />
   </div>
+    <script>
+    var JobStatus = <%= JobStatus%>;
+    var NameStatus = <%= NameStatus%>;
+    var DepartStatus = <%= DepartStatus%>;
+    </script>
   <%- include include.ejs %>
 </body>
 
