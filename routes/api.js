@@ -11,12 +11,12 @@ module.exports = function (io) {
   let NamedisplaySwitch = true;
   let JobdisplaySwitch = false;
 
-  router.get('/', (req, res) => {
-    res.render('index', { title: message, status: showStatus });
+  router.get('/view', (req, res) => {
+    res.render('view', { title: message, status: showStatus });
   });
 
-  router.get('/admin', (req, res) => {
-    res.render('admin', {
+  router.get('/', (req, res) => {
+    res.render('index', {
       title: message, status: showStatus,
       DepartStatus: DepartdisplaySwitch,
       NameStatus: NamedisplaySwitch,
