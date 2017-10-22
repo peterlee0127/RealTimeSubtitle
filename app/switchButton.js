@@ -20,20 +20,18 @@ require('webpack-jquery-ui/resizable');
 class SwitchButton extends React.Component {
   constructor(props) {
     super(props);
-    this.name = props.name;
-    this.checked = props.checked;
-    console.log(this.name+" "+ this.checked);
+    this.state = {checked: props.checked ,name: props.name};
   }
   handleClick() {
-    this.checked =! this.checked ;
-    console.log(this.name+" "+ this.checked);
+    var check = !this.state.checked;
+    this.setState({checked: check});
     //這裡要render 按鈕的字樣
   }
   render() {
     return (
         <Grid item xs={12}>
-            <div>{this.name}</div>
-            <Switch onChange={this.handleClick.bind(this)} checked={this.checked} aria-label="Switch"/>
+            <div>{this.state.name}</div>
+            <Switch onChange={this.handleClick.bind(this)} defaultChecked={this.state.checked} aria-label="Switch"/>
         </Grid>
     );
   }

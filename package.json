@@ -34,7 +34,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "start": "node app.js",
+    "dev":   "webpack --debug --watch"
   },
   "author": "peterlee0127 shbhsu",
   "license": "MIT"
