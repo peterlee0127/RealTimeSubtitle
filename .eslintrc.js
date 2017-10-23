@@ -14,6 +14,6 @@ module.exports = {
     "env": {
         "node": true,
         "mongo": true,
-        "es6": true
+        "es8": true
     }
 };

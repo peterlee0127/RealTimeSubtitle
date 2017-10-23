@@ -25,9 +25,14 @@
     "webpack-jquery-ui": "^1.0.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
+    "babel-plugin-flow-react-proptypes": "^6.1.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-preset-env": "^1.6.0",
+    "babel-preset-es2017": "^6.24.1",
     "eslint-config-google": "^0.9.1",
     "webpack": "^3.6.0",
     "webpack-merge": "^4.1.0"
@@ -35,7 +40,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "dev":   "webpack --debug --watch"
+    "dev": "webpack --debug --watch"
   },
   "author": "peterlee0127 shbhsu",
   "license": "MIT"
