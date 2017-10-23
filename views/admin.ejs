@@ -4,9 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <title>PDIS - Real Time Subtitle</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="bootstrap.css">
-  <link rel="stylesheet" href="switch.css">
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <link rel="stylesheet" href="stylesheets/bootstrap.css">
+  <link rel="stylesheet" href="stylesheets/switch.css">
+
 </head>
 
 <body>
@@ -47,8 +48,7 @@
       <div class="col-lg-4">
         <div>Dept. Display</div>
         <div class="material-switch pull-right">
-          <input id="DepartdisplaySwitch" onclick="BindListData()" name="displaySwitch" type="checkbox" <%=DepartStatus? "checked"
-            : "" %>/>
+          <input id="DepartdisplaySwitch" onclick="BindListData()" name="displaySwitch" type="checkbox" <%=DepartStatus? "checked" : "" %>/>
           <label for="DepartdisplaySwitch" class="label-primary"></label>
         </div>
       </div>
