@@ -14,14 +14,16 @@ module.exports = function (io) {
   let JobdisplaySwitch = false;
 
   router.get('/site', (req, res) => {
-    res.render('site', { title: message, status: showStatus });
+    res.render('site', {
+      title: message, status: showStatus,
+      DepartStatus: DepartdisplaySwitch,
+      NameStatus: NamedisplaySwitch,
+      JobStatus: JobdisplaySwitch
+ });
   });
   router.get('/subtitle', (req, res) => {
     res.render('subtitle', {
       subtitle: subtitlemessage, status: showStatus,
-      DepartStatus: DepartdisplaySwitch,
-      NameStatus: NamedisplaySwitch,
-      JobStatus: JobdisplaySwitch
     });
   });
 
@@ -30,13 +32,10 @@ module.exports = function (io) {
       res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
       return res.sendStatus(401);
     };
-
     var user = basicAuth(req);
-
     if (!user || !user.name || !user.pass) {
       return unauthorized(res);
     };
-
     if (user.name === 'pdis' && user.pass === 'pdis') {
       return next();
     } else {
@@ -144,6 +143,11 @@ module.exports = function (io) {
     socket.on('status', function (data) {
       showStatus = data.status;
       io.emit('new status', { status: showStatus });
+    });
+    socket.on('subtitle', function (data) {
+      subtitlemessage = data.subtitle;
+      console.log(subtitlemessage);
+      io.emit('new subtitle', { subtitle: subtitlemessage });
     });
   });
   return router;
