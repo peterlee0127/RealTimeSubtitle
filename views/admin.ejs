@@ -77,10 +77,18 @@
     <div class="row">
       <div class="col-lg-12">
         <button type='button' id="button_EditPosition" style='float:left;' onClick='draggableDisplay()' class='btn btn-primary '>編輯位置</button>
+     
+     
+        <form action="/clear/position" id="clearposition" encType="multipart/form-data" method="post" style="float: right;"  >
+          <input type="submit" value="清除位置" onclick="return confirm('Are you sure to delete?')" class="btn btn-warning">
+        </form>
       </div>
 
+  
 
     </div>
+
+  
 
 
     <link rel="stylesheet" href="stylesheets/micswitch.css">
@@ -103,7 +111,7 @@
     <!-- 錄音開關 -->
     <div class="row" style=" bottom:65px;right: 30px; position: fixed;">
       <div class="col-xs-12">
-        <button id="micswitchbuttom" class="btn btn-default micswitch" onclick='micswitch()'>
+        <button id="micswitchbuttom" class="btn btn-secondary micswitch" onclick='micswitch()'>
           <div id='micicon' class="fa-microphone-slash"> </div>
         </button>
       </div>
@@ -146,7 +154,7 @@
           <input type="submit" class="btn btn-danger">
         </form>
       </div>
-      <div class="col-lg-5">
+      <div class="col-lg-6">
         <h1>JSON upload</h1>
         <a href="example.json" charset="UTF-8" target="_bland">example</a>
         <br>
@@ -159,11 +167,7 @@
       
 
       </div>
-      <div class="col-lg-1">
-          <form action="/clear/position" id="clearposition" encType="multipart/form-data" method="post"  >
-            <input type="submit" value="清除位置" onclick="return confirm('Are you sure to delete?')" class="btn btn-warning">
-          </form>
-      </div>
+      
     </div>
     <!--<h1>List<h1>
     <div>
