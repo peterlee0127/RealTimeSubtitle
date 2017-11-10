@@ -56,3 +56,27 @@ function convertoFloat32ToInt16(buffer) {
 }
 
 window.addEventListener('load', initAudio );
+
+
+
+let subtitlesocket = io();
+
+
+// 接收訊息並顯示在前端畫面上
+subtitlesocket.on('new subtitle', function (json) {
+
+   
+        var  buttonText = json.subtitle;
+
+        $('.subtitle_bg').fadeOut('fast', function () {
+            // Animation complete.
+        });
+        $('#subtitle').animate({ opacity: 0 }, 200, function () {
+            $('#subtitle').text(buttonText).animate({ opacity: 1 }, 200);
+        });
+        nowText = buttonText;
+        $('.subtitle_bg').fadeIn('fast', function () {
+            // Animation complete.
+        });
+    
+});

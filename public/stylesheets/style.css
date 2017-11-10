@@ -135,3 +135,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9dbdb', end
 
 
 
+  .subtitle_bg {
+    display: inline-block;
+    height: 95px;
+    font-size: 35px;
+
+   
+   }
+
