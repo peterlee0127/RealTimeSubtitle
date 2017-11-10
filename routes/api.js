@@ -12,13 +12,21 @@ module.exports = function (io) {
   let DepartdisplaySwitch = false;
   let NamedisplaySwitch = true;
   let JobdisplaySwitch = false;
+  let titlealign='';
 
   router.get('/site', (req, res) => {
+  
+    if(req.query.align=='vertical')
+    {
+       titlealign = req.query.align;
+    }
+
     res.render('site', {
       title: message, status: showStatus,
       DepartStatus: DepartdisplaySwitch,
       NameStatus: NamedisplaySwitch,
-      JobStatus: JobdisplaySwitch
+      JobStatus: JobdisplaySwitch,
+      titlealign:titlealign
  });
   });
   router.get('/subtitle', (req, res) => {

@@ -35,14 +35,14 @@ socket.on('new title', function (json) {
             $('#title').text(nowText);
             return;
         }
-        $('.textbox_bg').fadeOut('fast', function () {
+        $('#textbg').fadeOut('fast', function () {
             // Animation complete.
         });
         $('#title').animate({ opacity: 0 }, 200, function () {
             $('#title').text(buttonText).animate({ opacity: 1 }, 200);
         });
         nowText = buttonText;
-        $('.textbox_bg').fadeIn('fast', function () {
+        $('#textbg').fadeIn('fast', function () {
             // Animation complete.
         });
     }
@@ -54,11 +54,11 @@ socket.on('new status', function (json) {
     $('#displaySwitch').attr('checked', showStatus);
 
     if (showStatus == false) {
-        $('.textbox_bg').fadeOut('slow', function () {
+        $('#textbg').fadeOut('slow', function () {
             // Animation complete.
         });
     } else {
-        $('.textbox_bg').fadeIn('slow', function () {
+        $('#textbg').fadeIn('slow', function () {
             // Animation complete.
         });
     }
