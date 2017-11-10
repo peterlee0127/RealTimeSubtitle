@@ -1,4 +1,11 @@
+
+// import io from 'socket.io';
+var io = require("socket.io-client");
+require("jquery-ui/ui/widgets/draggable");
+require("jquery-ui/ui/widgets/resizable");
+
 let socket = io();
+window.socket = socket;
 let nowText = $('#title').text;
 let showStatus = $('#displaySwitch').is(':checked');
 let list = '';
@@ -103,6 +110,7 @@ function clickTitle(title_text, btn_Id) {
     $('#' + btn_Id).attr('class', 'btn btn-danger btn-sm');
 
 };
+window.clickTitle = clickTitle;
 
 //將匯入名單轉成按鈕，供直接點選
 $.getJSON('api/list', function (json) {
@@ -165,6 +173,7 @@ function BindListData() {
     SetPosition();
 
 };
+window.BindListData = BindListData;
 
 var sPositions = '';
 var positions = '';
@@ -219,7 +228,7 @@ function init_draggble() {
 
 
 }
-
+window.init_draggble = init_draggble;
 
 
 //切換編輯按鈕 儲存
@@ -259,10 +268,12 @@ function draggableDisplay() {
 
     })
 };
+window.draggableDisplay = draggableDisplay;
 
 function ondragging(element_id) {
     $('#' + element_id).css('border', '3px solid #d9534f');
 }
+window.ondragging = ondragging;
 
 //hotkey
 $(document).keypress(function (e) {
@@ -279,5 +290,4 @@ $(document).keydown(function (e) {
     }
 });
 
-
-
+module.exports = {BindListData}

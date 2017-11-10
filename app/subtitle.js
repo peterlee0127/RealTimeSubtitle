@@ -1,5 +1,6 @@
 var micStatus = false;
-//開關麥克風
+var context;
+
 function micswitch() {
     if (micStatus) {//關
         $('#micswitchbuttom').attr("class", "btn btn-secondary micswitch")
@@ -16,11 +17,12 @@ function micswitch() {
     micStatus = !micStatus;
 }
 
-var context;
+window.micswitch = micswitch;
 
 function initAudio() {
     let websocket = new WebSocket("wss://developer.ailabs.tw/asr/api/");
     websocket.onopen = function (event) {
+
         var initStr = { action: "open_processor", session_id: "asr", meta_out: "reflect" }
         websocket.send(JSON.stringify(initStr));
     };
@@ -59,8 +61,9 @@ function initAudio() {
         jsNode.connect(context.destination);
 
         jsNode.onaudioprocess = function (event) {
-            var audio_data = event.inputBuffer.getChannelData(0) || new Float16Array(2048);
+            var audio_data = event.inputBuffer.getChannelData(0);// || new Float32Array(2048);
             audio_data = convertoFloat32ToInt16(audio_data);
+
             websocket.send(audio_data);
             // send audio_data to server
         }
@@ -70,6 +73,7 @@ function initAudio() {
 }
 
 function convertoFloat32ToInt16(buffer) {
+    console.log(buffer);
     var l = buffer.length;
     var buf = new Int16Array(l / 3); //<-----Only change here
 
@@ -78,9 +82,23 @@ function convertoFloat32ToInt16(buffer) {
             buf[l / 3] = buffer[l] * 0xFFFF;
         }
     }
+    console.log(buf);
     return buf.buffer
 }
+function reSample(audioBuffer, targetSampleRate, onComplete) {
+    var channel = audioBuffer.numberOfChannels;
+    var samples = audioBuffer.length * targetSampleRate / audioBuffer.sampleRate;
 
+    var offlineContext = new OfflineAudioContext(channel, samples, targetSampleRate);
+    var bufferSource = offlineContext.createBufferSource();
+    bufferSource.buffer = audioBuffer;
+
+    bufferSource.connect(offlineContext.destination);
+    bufferSource.start(0);
+    offlineContext.startRendering().then(function(renderedBuffer){
+        onComplete(renderedBuffer);
+    })
+}
 
 socket.on('new subtitle', function (json) {
 

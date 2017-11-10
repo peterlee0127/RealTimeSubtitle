@@ -11,13 +11,27 @@
     "express-fileupload": "^0.2.0",
     "helmet": "^3.8.2",
     "multer": "^1.3.0",
-    "socket.io": "^2.0.3"
+    "socket.io": "^2.0.3",
+    "socket.io-client": "^2.0.3",
+    "jquery": "^3.2.1",
+    "jquery-ui": "^1.12.1"
   },
   "devDependencies": {
+    "webpack": "",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-flow-react-proptypes": "^6.1.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-assign": "^6.22.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-es2017": "^6.24.1",
     "eslint-config-google": "^0.9.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "webpack --debug --watch"
   },
   "author": "peterlee0127 shbhsu",
   "license": "MIT"
