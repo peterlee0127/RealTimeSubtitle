@@ -288,7 +288,7 @@ function micswitch() {
     
     if(micStatus)
     {//關
-        $('#micswitchbuttom').attr("class","btn btn-lg btn-default micswitch")
+        $('#micswitchbuttom').attr("class","btn btn-secondary micswitch")
         $('#micicon').attr("class","fa-microphone-slash");
         micStatus=!micStatus;
     }
