@@ -1,0 +1,21 @@
+
+.micswitch {
+    font-size: 36px;
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+    padding: 0
+}
+
+.fa-microphone{
+    background: url(if_microphone.png) no-repeat center;
+    background-size: 30px 30px;
+    height: 50px;
+}
+
+.fa-microphone-slash{
+    
+    background: url(if_microphone-slash.png) no-repeat center;
+    background-size: 30px 30px;
+    height: 50px;
+}

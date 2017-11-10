@@ -67,7 +67,7 @@ socket.on('new status', function (json) {
 // 送出訊息(訊息,顯示狀態)
 function sendNewTitle(text) {
 
-    $('#button-array :button').attr('class','btn btn-primary btn-sm');
+    $('#button-array :button').attr('class', 'btn btn-primary btn-sm');
     socket.emit('title', { title: text });
 }
 
@@ -93,14 +93,14 @@ function newTitle() {
 }
 
 // 點選匯入的名單
-function clickTitle(title_text,btn_Id) {
+function clickTitle(title_text, btn_Id) {
 
     if (title_text != '') {
         $('#inputField').val(title_text);
         newTitle();
     }
-    $('#button-array :button').attr('class','btn btn-primary btn-sm');
-    $('#'+btn_Id).attr('class','btn btn-danger btn-sm');
+    $('#button-array :button').attr('class', 'btn btn-primary btn-sm');
+    $('#' + btn_Id).attr('class', 'btn btn-danger btn-sm');
 
 };
 
@@ -146,7 +146,7 @@ function BindListData() {
             }
 
 
-            
+
 
             buttonSrc += "<div class='listbutton draggable' id='drag_" + (i + 1) + '-' + (index + 1) + "' ondrag='ondragging(this.id)' ><button type='button' id='dragBtn_" + (i + 1) + '-' + (index + 1) + "' style='float:left;' onClick=\"";
             buttonSrc += "clickTitle('" + element + "','dragBtn_" + (i + 1) + '-' + (index + 1) + "')\"" + " class='btn btn-primary btn-sm'>" + (i + 1) + '-' + (index + 1) + "</button><div>" + buttonText + "</div></div> "
@@ -215,7 +215,7 @@ function init_draggble() {
         }
     })
 
-   
+
 
 
 }
@@ -280,4 +280,25 @@ $(document).keydown(function (e) {
 });
 
 
+
+var micStatus=false;
+//開關麥克風
+function micswitch() {
+
+    
+    if(micStatus)
+    {//關
+        $('#micswitchbuttom').attr("class","btn btn-lg btn-default micswitch")
+        $('#micicon').attr("class","fa-microphone-slash");
+        micStatus=!micStatus;
+    }
+    else
+    {
+        $('#micswitchbuttom').attr("class","btn btn-lg btn-danger micswitch")
+   
+        $('#micicon').attr("class","fa-microphone");
+        micStatus=!micStatus;
+    }
+
+}
 

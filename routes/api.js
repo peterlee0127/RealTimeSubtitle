@@ -6,6 +6,7 @@ module.exports = function (io) {
   let fileUpload = require('express-fileupload');
 
   let message = '';
+  let subtitlemessage = '';
   let showStatus = false;
   let DepartdisplaySwitch = false;
   let NamedisplaySwitch = true;
@@ -16,7 +17,7 @@ module.exports = function (io) {
   });
   router.get('/subtitle', (req, res) => {
     res.render('subtitle', {
-      title: message, status: showStatus,
+      subtitle: subtitlemessage, status: showStatus,
       DepartStatus: DepartdisplaySwitch,
       NameStatus: NamedisplaySwitch,
       JobStatus: JobdisplaySwitch
@@ -85,7 +86,17 @@ module.exports = function (io) {
       stream.write(req.body.json);
       stream.end();
     });
-    res.redirect('/admin');
+    res.redirect('/');
+  });
+
+  router.post('/clear/position', function (req, res) {
+    res.setHeader('Content-Type', 'text/plain')
+    var stream = fs.createWriteStream("./public/upload/position.json");
+    stream.once('open', function (fd) {
+      stream.write('{}');
+      stream.end();
+    });
+    res.redirect('/');
   });
 
 
@@ -97,7 +108,7 @@ module.exports = function (io) {
     });
     setTimeout(function () {
 
-      res.redirect('/admin');
+      res.redirect('/');
     }, 500);
   }
 

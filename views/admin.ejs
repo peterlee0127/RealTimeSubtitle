@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <meta charset="UTF-8">
   <title>PDIS - Real Time Subtitle</title>
   <link rel="stylesheet" href="stylesheets/style.css">
@@ -16,7 +16,9 @@
   <nav class="navbar navbar-dark bg-inverse">
     <ul class="nav navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link " style="color:white;font-weight:bold;" href="admin">PDIS Live <span class="sr-only">(current)</span></a>
+        <a class="nav-link " style="color:white;font-weight:bold;" href="admin">PDIS Live
+          <span class="sr-only">(current)</span>
+        </a>
       </li>
       <!-- <li class="nav-item">
           <a class="nav-link" href="#">Features</a>
@@ -49,7 +51,8 @@
       <div class="col-lg-4">
         <div>Dept. Display</div>
         <div class="material-switch pull-right">
-          <input id="DepartdisplaySwitch" onclick="BindListData()" name="displaySwitch" type="checkbox" <%=DepartStatus? "checked" : "" %>/>
+          <input id="DepartdisplaySwitch" onclick="BindListData()" name="displaySwitch" type="checkbox" <%=DepartStatus? "checked"
+            : "" %>/>
           <label for="DepartdisplaySwitch" class="label-primary"></label>
         </div>
       </div>
@@ -75,7 +78,12 @@
       <div class="col-lg-12">
         <button type='button' id="button_EditPosition" style='float:left;' onClick='draggableDisplay()' class='btn btn-primary '>編輯位置</button>
       </div>
+
+
     </div>
+
+
+    <link rel="stylesheet" href="stylesheets/micswitch.css">
 
     <div id="draggble_panel">
       <div class="row">
@@ -89,6 +97,15 @@
       </div>
 
       <div class="row" id="button-array">
+      </div>
+    </div>
+
+    <!-- 錄音開關 -->
+    <div class="row" style=" bottom:65px;right: 30px; position: fixed;">
+      <div class="col-xs-12">
+        <button id="micswitchbuttom" class="btn btn-default micswitch" onclick='micswitch()'>
+          <div id='micicon' class="fa-microphone-slash"> </div>
+        </button>
       </div>
     </div>
 
@@ -129,15 +146,23 @@
           <input type="submit" class="btn btn-danger">
         </form>
       </div>
-      <div class="col-lg-6">
+      <div class="col-lg-5">
         <h1>JSON upload</h1>
         <a href="example.json" charset="UTF-8" target="_bland">example</a>
-        <form action="/upload/json" id="upload" encType="multipart/form-data" method="post">
+        <br>
+      
+        <form action="/upload/json" id="upload" encType="multipart/form-data" method="post" >
           <input type="file" name="json" accept="json/*">
           <input type="submit" class="btn btn-danger">
         </form>
 
+      
 
+      </div>
+      <div class="col-lg-1">
+          <form action="/clear/position" id="clearposition" encType="multipart/form-data" method="post"  >
+            <input type="submit" value="清除位置" onclick="return confirm('Are you sure to delete?')" class="btn btn-warning">
+          </form>
       </div>
     </div>
     <!--<h1>List<h1>
