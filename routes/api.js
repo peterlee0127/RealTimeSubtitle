@@ -4,6 +4,7 @@ module.exports = function (io) {
   let router = express.Router();
   let fs = require('fs');
   let fileUpload = require('express-fileupload');
+  let basicAuth = require('basic-auth');
 
   let message = '';
   let subtitlemessage = '';
@@ -24,7 +25,26 @@ module.exports = function (io) {
     });
   });
 
-  router.get('/', (req, res) => {
+  var auth = function (req, res, next) {
+    function unauthorized(res) {
+      res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
+      return res.sendStatus(401);
+    };
+
+    var user = basicAuth(req);
+
+    if (!user || !user.name || !user.pass) {
+      return unauthorized(res);
+    };
+
+    if (user.name === 'pdis' && user.pass === 'pdis') {
+      return next();
+    } else {
+      return unauthorized(res);
+    };
+  };
+
+  router.get('/',auth, (req, res) => {
     res.render('admin', {
       title: message, status: showStatus,
       DepartStatus: DepartdisplaySwitch,
@@ -72,10 +92,14 @@ module.exports = function (io) {
     if (!req.files.json) {
       return res.status(400).send('No files were uploaded.');
     } else {
-      fs.writeFile('./public/upload/position.json', JSON.stringify({}),'utf-8',function(){});
+      // fs.writeFile('./public/upload/position.json', JSON.stringify({}),'utf-8',function(){});
       let file = req.files.json;
       handlefile(file, res, './public/upload/list.json');
     }
+  });
+
+  router.post('/upload/position', function (req, res) {
+      fs.writeFile('./public/upload/position.json', JSON.stringify({}),'utf-8',function(){});
   });
 
   router.post('/api/upload/position', function (req, res) {
