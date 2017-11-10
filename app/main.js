@@ -88,6 +88,7 @@ function changeShowStatus() {
         status: $('#displaySwitch').is(':checked')
     });
 }
+window.changeShowStatus = changeShowStatus;
 
 // 輸入新訊息
 function newTitle() {
