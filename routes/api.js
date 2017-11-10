@@ -11,11 +11,19 @@ module.exports = function (io) {
   let NamedisplaySwitch = true;
   let JobdisplaySwitch = false;
 
-  router.get('/', (req, res) => {
-    res.render('index', { title: message, status: showStatus });
+  router.get('/site', (req, res) => {
+    res.render('site', { title: message, status: showStatus });
+  });
+  router.get('/subtitle', (req, res) => {
+    res.render('subtitle', {
+      title: message, status: showStatus,
+      DepartStatus: DepartdisplaySwitch,
+      NameStatus: NamedisplaySwitch,
+      JobStatus: JobdisplaySwitch
+    });
   });
 
-  router.get('/admin', (req, res) => {
+  router.get('/', (req, res) => {
     res.render('admin', {
       title: message, status: showStatus,
       DepartStatus: DepartdisplaySwitch,
@@ -31,7 +39,7 @@ module.exports = function (io) {
             res.json(json);
         } else {
             res.json({});
-        } 
+        }
     });
   });
 
@@ -42,7 +50,7 @@ module.exports = function (io) {
             res.json(json);
         } else {
             res.json({});
-        }    
+        }
     });
 
   });
