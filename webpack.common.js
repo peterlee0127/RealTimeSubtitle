@@ -6,15 +6,6 @@ module.exports = {
     './app/main.js',
     './app/subtitle.js']
     },
-    output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, './public/'),
-        publicPath: '/'
-    },
-    devServer: {
-        inline: false,
-        contentBase: "./public/dist",
-    },
     module: {
         rules: [
         {
@@ -63,5 +54,8 @@ module.exports = {
           '$'                : 'jquery'
       })
     ],
-    devtool: 'source-map'
+    output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'public')
+    }
 };

@@ -17,7 +17,6 @@
     "jquery-ui": "^1.12.1"
   },
   "devDependencies": {
-    "webpack": "",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -26,12 +25,16 @@
     "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-es2017": "^6.24.1",
-    "eslint-config-google": "^0.9.1"
+    "eslint-config-google": "^0.9.1",
+    "uglifyjs-webpack-plugin": "^1.0.1",
+    "webpack": "",
+    "webpack-merge": "^4.1.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "dev": "webpack --debug --watch"
+    "dev": "webpack --config webpack.dev.js --watch --debug",
+    "build": "webpack --config webpack.production.js"
   },
   "author": "peterlee0127 shbhsu",
   "license": "MIT"
