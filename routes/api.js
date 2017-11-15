@@ -20,6 +20,10 @@ module.exports = function (io) {
     {
        titlealign = req.query.align;
     }
+    else
+    {
+      titlealign = '';
+    }
 
     res.render('site', {
       title: message, status: showStatus,
