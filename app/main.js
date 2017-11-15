@@ -113,6 +113,15 @@ function clickTitle(title_text, btn_Id) {
 };
 window.clickTitle = clickTitle;
 
+var sPositions = '';
+var positions = '';
+
+$.getJSON("api/position", function (json) {
+    sPositions = json || "{}",
+        positions = JSON.parse(sPositions);
+    SetPosition();
+});
+
 //將匯入名單轉成按鈕，供直接點選
 $.getJSON('api/list', function (json) {
     list = JSON.parse(json).list;
@@ -134,11 +143,11 @@ function BindListData() {
     var col_num = 12 / list.length;
 
     var maxheigh=0;
-
+ 
     for (var i = 0; i < list.length; i++) {
 
         var buttonSrc = "<div class='col-lg-" + col_num + "' style='text-align: left;'>";
-
+        var indexheigh=-1;
 
         list[i].forEach(function (element, index) {
 
@@ -165,7 +174,14 @@ function BindListData() {
             }
             $("#FilePanel").css('padding-top', maxheigh+'px');
 
-            buttonSrc += "<div class='listbutton draggable' style='top:"+index*50+"px;' id='drag_" + (i + 1) + '-' + (index + 1) + "' ondrag='ondragging(this.id)' ><button type='button' id='dragBtn_" + (i + 1) + '-' + (index + 1) + "' style='float:left;' onClick=\"";
+           
+           
+            if( ! positions.hasOwnProperty('drag_'+(i + 1) + '-' + (index + 1)) )
+            {
+                console.log(sPositions)
+                indexheigh=indexheigh+1;
+            }
+            buttonSrc += "<div class='listbutton draggable' style='top:"+indexheigh*50+"px;' id='drag_" + (i + 1) + '-' + (index + 1) + "' ondrag='ondragging(this.id)' ><button type='button' id='dragBtn_" + (i + 1) + '-' + (index + 1) + "' style='float:left;' onClick=\"";
             buttonSrc += "clickTitle('" + element + "','dragBtn_" + (i + 1) + '-' + (index + 1) + "')\"" + " class='btn btn-primary btn-sm'>" + (i + 1) + '-' + (index + 1) + "</button><div>" + buttonText + "</div></div> "
 
 
@@ -184,14 +200,7 @@ function BindListData() {
 };
 window.BindListData = BindListData;
 
-var sPositions = '';
-var positions = '';
 
-$.getJSON("api/position", function (json) {
-    sPositions = json || "{}",
-        positions = JSON.parse(sPositions);
-    SetPosition();
-});
 
 
 //設定各位置
