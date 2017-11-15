@@ -141,6 +141,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9dbdb', end
     margin: 3px;
     float: left;
     cursor: move;
+    position: absolute;
 
 }
 

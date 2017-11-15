@@ -132,6 +132,9 @@ function BindListData() {
     var titleStatus = $("#JobdisplaySwitch").is(':checked');
 
     var col_num = 12 / list.length;
+
+    var maxheigh=0;
+
     for (var i = 0; i < list.length; i++) {
 
         var buttonSrc = "<div class='col-lg-" + col_num + "' style='text-align: left;'>";
@@ -155,9 +158,14 @@ function BindListData() {
             }
 
 
+            //名單高度計算
+            if(index*50>maxheigh)
+            {
+                maxheigh=index*50;
+            }
+            $("#FilePanel").css('padding-top', maxheigh+'px');
 
-
-            buttonSrc += "<div class='listbutton draggable' id='drag_" + (i + 1) + '-' + (index + 1) + "' ondrag='ondragging(this.id)' ><button type='button' id='dragBtn_" + (i + 1) + '-' + (index + 1) + "' style='float:left;' onClick=\"";
+            buttonSrc += "<div class='listbutton draggable' style='top:"+index*50+"px;' id='drag_" + (i + 1) + '-' + (index + 1) + "' ondrag='ondragging(this.id)' ><button type='button' id='dragBtn_" + (i + 1) + '-' + (index + 1) + "' style='float:left;' onClick=\"";
             buttonSrc += "clickTitle('" + element + "','dragBtn_" + (i + 1) + '-' + (index + 1) + "')\"" + " class='btn btn-primary btn-sm'>" + (i + 1) + '-' + (index + 1) + "</button><div>" + buttonText + "</div></div> "
 
 
@@ -193,7 +201,7 @@ function SetPosition() {
 
         $("#" + id).css(pos)
         $("#" + id).css('position', 'absolute')
-
+        
     })
 
 }
@@ -208,6 +216,8 @@ function init_draggble() {
             positions[this.id] = ui.position;
             localStorage.positions = JSON.stringify(positions);
             BindListData();
+
+        
 
         }
     });
