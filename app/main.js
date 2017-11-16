@@ -167,20 +167,23 @@ function BindListData() {
             }
 
 
-            //名單高度計算
-            if(index*50>maxheigh)
-            {
-                maxheigh=index*50;
-            }
-            $("#FilePanel").css('padding-top', maxheigh+'px');
-
+            
            
            
+            //判斷是否已拉入框內
             if( ! positions.hasOwnProperty('drag_'+(i + 1) + '-' + (index + 1)) )
             {
-                console.log(sPositions)
                 indexheigh=indexheigh+1;
             }
+
+            //名單高度計算
+            if(indexheigh*50>maxheigh)
+            {
+                maxheigh=indexheigh*50;
+            }
+            $("#FilePanel").css('padding-top', (maxheigh+100)+'px');
+            
+
             buttonSrc += "<div class='listbutton draggable' style='top:"+indexheigh*50+"px;' id='drag_" + (i + 1) + '-' + (index + 1) + "' ondrag='ondragging(this.id)' ><button type='button' id='dragBtn_" + (i + 1) + '-' + (index + 1) + "' style='float:left;' onClick=\"";
             buttonSrc += "clickTitle('" + element + "','dragBtn_" + (i + 1) + '-' + (index + 1) + "')\"" + " class='btn btn-primary btn-sm'>" + (i + 1) + '-' + (index + 1) + "</button><div>" + buttonText + "</div></div> "
 
