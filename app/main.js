@@ -143,10 +143,10 @@ function BindListData() {
     var col_num = 12 / list.length;
 
     var maxheigh=0;
- 
+
     for (var i = 0; i < list.length; i++) {
 
-        var buttonSrc = "<div class='col-lg-" + col_num + "' style='text-align: left;'>";
+        var buttonSrc = `<div class='col-lg-${col_num}' style='text-align: left;'>`;
         var indexheigh=-1;
 
         list[i].forEach(function (element, index) {
@@ -167,9 +167,9 @@ function BindListData() {
             }
 
 
-            
-           
-           
+
+
+
             //判斷是否已拉入框內
             if( ! positions.hasOwnProperty('drag_'+(i + 1) + '-' + (index + 1)) )
             {
@@ -182,10 +182,21 @@ function BindListData() {
                 maxheigh=indexheigh*50;
             }
             $("#FilePanel").css('padding-top', (maxheigh+100)+'px');
-            
 
-            buttonSrc += "<div class='listbutton draggable' style='top:"+indexheigh*50+"px;' id='drag_" + (i + 1) + '-' + (index + 1) + "' ondrag='ondragging(this.id)' ><button type='button' id='dragBtn_" + (i + 1) + '-' + (index + 1) + "' style='float:left;' onClick=\"";
-            buttonSrc += "clickTitle('" + element + "','dragBtn_" + (i + 1) + '-' + (index + 1) + "')\"" + " class='btn btn-primary btn-sm'>" + (i + 1) + '-' + (index + 1) + "</button><div>" + buttonText + "</div></div> "
+            const idName = `${i+1}-${index+1}`;
+            const divStyle = `top:${indexheigh*50}px`
+            buttonSrc += `
+            <div class='listbutton draggable'
+              style='${divStyle}'
+              id='drag_${idName}'
+              ondrag='ondragging(this.id)' >
+                <button type='button' id='dragBtn_${idName}'
+                  style='float:left;'
+                  onClick='clickTitle(element,dragBtn_${idName})'
+                  class='btn btn-primary btn-sm'>
+                  ${idName}</button>
+                <div>${buttonText}</div>
+             </div>`;
 
 
         }, this);
@@ -213,7 +224,7 @@ function SetPosition() {
 
         $("#" + id).css(pos)
         $("#" + id).css('position', 'absolute')
-        
+
     })
 
 }
@@ -229,7 +240,7 @@ function init_draggble() {
             localStorage.positions = JSON.stringify(positions);
             BindListData();
 
-        
+
 
         }
     });
