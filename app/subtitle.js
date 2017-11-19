@@ -62,8 +62,8 @@ function initAudio() {
 
         jsNode.onaudioprocess = function (event) {
             var audio_data = event.inputBuffer.getChannelData(0);// || new Float32Array(2048);
-            audio_data = convertoFloat32ToInt16(audio_data);
-
+            var sampleRate = event.inputBuffer.sampleRate;
+            audio_data = downSampling(audio_data,sampleRate);
             websocket.send(audio_data);
             // send audio_data to server
         }
@@ -72,33 +72,18 @@ function initAudio() {
     });
 }
 
-function convertoFloat32ToInt16(buffer) {
-    console.log(buffer);
-    var l = buffer.length;
-    var buf = new Int16Array(l / 3); //<-----Only change here
-
-    while (l--) {
-        if (l % 3 == 0) {
-            buf[l / 3] = buffer[l] * 0xFFFF;
+function downSampling(buffer,sampleRate) {
+        var e = buffer;
+        var n = sampleRate;
+        for (var t = n / 16e3, o = Math.round(e.length / t), r = new Int16Array(o), i = 0, a = 0; i < r.length;) {
+            for (var c = Math.round((i + 1) * t), u = 0, s = 0, l = a; l < c && l < e.length; l++) u += e[l], s++;
+            var f = u / s,
+                d = Math.max(-1, Math.min(1, f));
+            r[i] = d < 0 ? 32768 * d : 32767 * d, i++, a = c
         }
-    }
-    console.log(buf);
-    return buf.buffer
+        return r
 }
-function reSample(audioBuffer, targetSampleRate, onComplete) {
-    var channel = audioBuffer.numberOfChannels;
-    var samples = audioBuffer.length * targetSampleRate / audioBuffer.sampleRate;
 
-    var offlineContext = new OfflineAudioContext(channel, samples, targetSampleRate);
-    var bufferSource = offlineContext.createBufferSource();
-    bufferSource.buffer = audioBuffer;
-
-    bufferSource.connect(offlineContext.destination);
-    bufferSource.start(0);
-    offlineContext.startRendering().then(function(renderedBuffer){
-        onComplete(renderedBuffer);
-    })
-}
 
 socket.on('new subtitle', function (json) {
 
