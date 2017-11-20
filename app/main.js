@@ -3,6 +3,7 @@
 var io = require("socket.io-client");
 require("jquery-ui/ui/widgets/draggable");
 require("jquery-ui/ui/widgets/resizable");
+require('jquery-ui-touch-punch');
 
 let socket = io();
 window.socket = socket;
