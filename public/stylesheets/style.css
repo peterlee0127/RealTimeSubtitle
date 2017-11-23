@@ -99,14 +99,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9dbdb', end
   height: auto;
   font-size: 35px;
   color:#fff;
-  border: 7px rgb(219, 219, 219) outset;
 
-/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#7d7e7d+0,0e0e0e+100;Black+3D */
-background: rgb(125,126,125); /* Old browsers */
-background: -moz-linear-gradient(45deg, rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(45deg, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(45deg, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  background-color: rgb(0, 178, 158);
+  box-shadow: 13px 13px 13px rgba(10%,20%,40%,0.8);
+
+ 
 
 }
 .inputMessage {
