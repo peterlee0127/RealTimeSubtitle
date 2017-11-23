@@ -193,7 +193,7 @@ function BindListData() {
               ondrag='ondragging(this.id)' >
                 <button type='button' id='dragBtn_${idName}'
                   style='float:left;'
-                  onClick='clickTitle(element,dragBtn_${idName})'
+                  onClick="clickTitle('${element}','dragBtn_${idName}')"
                   class='btn btn-primary btn-sm'>
                   ${idName}</button>
                 <div>${buttonText}</div>
