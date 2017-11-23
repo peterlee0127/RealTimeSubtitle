@@ -98,14 +98,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9dbdb', end
   display: inline-block;
   height: auto;
   font-size: 35px;
-  border: 2px #ccc solid;
-  border-radius: 0px 100px 0px 100px;
-/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f9dbdb+0,f4c8c8+44,ffc9c9+48,ffbcbc+100 */
-background: rgb(249,219,219); /* Old browsers */
-background: -moz-linear-gradient(-45deg, rgba(249,219,219,1) 0%, rgba(244,200,200,1) 44%, rgba(255,201,201,1) 48%, rgba(255,188,188,1) 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(-45deg, rgba(249,219,219,1) 0%,rgba(244,200,200,1) 44%,rgba(255,201,201,1) 48%,rgba(255,188,188,1) 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(135deg, rgba(249,219,219,1) 0%,rgba(244,200,200,1) 44%,rgba(255,201,201,1) 48%,rgba(255,188,188,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9dbdb', endColorstr='#ffbcbc',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  color:#fff;
+  border: 7px rgb(219, 219, 219) outset;
+
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#7d7e7d+0,0e0e0e+100;Black+3D */
+background: rgb(125,126,125); /* Old browsers */
+background: -moz-linear-gradient(45deg, rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(45deg, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(45deg, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
 }
 .inputMessage {
   border: 10px solid #000;
@@ -134,7 +136,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9dbdb', end
 }
 
 .draggable {
-    width: 130px;
+    width: 100px;
     border:1px solid #000;
     color:#000;
     padding: 0.5em;
@@ -142,6 +144,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9dbdb', end
     float: left;
     cursor: move;
     position: absolute;
+    text-align: center;
 
 }
 

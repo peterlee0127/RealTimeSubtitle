@@ -108,8 +108,10 @@ function clickTitle(title_text, btn_Id) {
         $('#inputField').val(title_text);
         newTitle();
     }
-    $('#button-array :button').attr('class', 'btn btn-primary btn-sm');
-    $('#' + btn_Id).attr('class', 'btn btn-danger btn-sm');
+    $('.listbutton').css('background-color', '#fff');
+    $('.listbutton').css('color', '#000');
+    $('#' + btn_Id).css('background-color', '#000');
+    $('#' + btn_Id).css('color', '#fff');
 
 };
 window.clickTitle = clickTitle;
@@ -143,12 +145,12 @@ function BindListData() {
 
     var col_num = 12 / list.length;
 
-    var maxheigh=0;
+    var maxheigh = 0;
 
     for (var i = 0; i < list.length; i++) {
 
         var buttonSrc = `<div class='col-lg-${col_num}' style='text-align: left;'>`;
-        var indexheigh=-1;
+        var indexheigh = -1;
 
         list[i].forEach(function (element, index) {
 
@@ -172,30 +174,26 @@ function BindListData() {
 
 
             //判斷是否已拉入框內
-            if( ! positions.hasOwnProperty('drag_'+(i + 1) + '-' + (index + 1)) )
-            {
-                indexheigh=indexheigh+1;
+            if (!positions.hasOwnProperty('drag_' + (i + 1) + '-' + (index + 1))) {
+                indexheigh = indexheigh + 1;
             }
 
             //名單高度計算
-            if(indexheigh*50>maxheigh)
-            {
-                maxheigh=indexheigh*50;
+            if (indexheigh * 50 > maxheigh) {
+                maxheigh = indexheigh * 50;
             }
-            $("#FilePanel").css('padding-top', (maxheigh+100)+'px');
+            $("#FilePanel").css('padding-top', (maxheigh + 100) + 'px');
 
-            const idName = `${i+1}-${index+1}`;
-            const divStyle = `top:${indexheigh*50}px`
+            const idName = `${i + 1}-${index + 1}`;
+            const divStyle = `top:${indexheigh * 50}px;`
+            
             buttonSrc += `
             <div class='listbutton draggable'
-              style='${divStyle}'
+              style='${divStyle} '
               id='drag_${idName}'
+              onClick="clickTitle('${element}','drag_${idName}')"
               ondrag='ondragging(this.id)' >
-                <button type='button' id='dragBtn_${idName}'
-                  style='float:left;'
-                  onClick="clickTitle('${element}','dragBtn_${idName}')"
-                  class='btn btn-primary btn-sm'>
-                  ${idName}</button>
+            
                 <div>${buttonText}</div>
              </div>`;
 
@@ -273,11 +271,13 @@ function draggableDisplay() {
         $('.draggable').draggable('enable');
         $("#button_EditPosition").attr('class', 'btn btn-danger ');
         $("#button_EditPosition").html('編輯完成');
+      
     }
     else {
         $('.draggable').draggable('disable');
         $("#button_EditPosition").attr('class', 'btn btn-primary');
         $("#button_EditPosition").html('編輯位置');
+       
 
         $.ajax
             ({
@@ -325,4 +325,4 @@ $(document).keydown(function (e) {
     }
 });
 
-module.exports = {BindListData}
+module.exports = { BindListData }
