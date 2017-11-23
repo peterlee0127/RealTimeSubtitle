@@ -85,6 +85,7 @@ ul {
   display: inline-block;
   height: auto;
   font-size: 35px;
+  opacity: 0.9;
   border-radius: 50px 50px 50px 50px;
   color: rgb(245, 245, 245);
   background-color: rgb(35, 31, 32);
@@ -95,6 +96,7 @@ ul {
   -webkit-writing-mode: vertical-lr ;
   writing-mode: vertical-lr ;
   display: inline-block;
+  opacity: 0.9;
   height: auto;
   font-size: 35px;
   color:#fff;
