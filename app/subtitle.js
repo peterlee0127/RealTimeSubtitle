@@ -81,18 +81,13 @@ function downSampling(buffer,sampleRate) {
                 d = Math.max(-1, Math.min(1, f));
             r[i] = d < 0 ? 32768 * d : 32767 * d, i++, a = c
         }
-        return r
+        return r;
 }
 
 
-socket.on('new subtitle', function (json) {
+socket.on('new subtitle', function(json) {
 
-    var buttonText = json.subtitle;
-
-    console.log(buttonText);
-
-
-    $('#subtitle').text(buttonText);
-
-
+    const subtitle = json.subtitle;
+    $('#subtitle').text(subtitle);
+    $('#history').append(subtitle);
 });

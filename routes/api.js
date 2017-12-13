@@ -31,20 +31,28 @@ module.exports = function (io) {
       NameStatus: NamedisplaySwitch,
       JobStatus: JobdisplaySwitch,
       titlealign:titlealign
- });
+    });
   });
+
   router.get('/subtitle', (req, res) => {
     res.render('subtitle', {
       subtitle: subtitlemessage, status: showStatus,
     });
   });
 
-  var auth = function (req, res, next) {
+  router.get('/history', (req ,res) =>{
+    res.render('history', {
+      subtitle: subtitlemessage, status: showStatus,
+    });
+  });
+
+    
+  const auth = function (req, res, next) {
     function unauthorized(res) {
       res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
       return res.sendStatus(401);
     };
-    var user = basicAuth(req);
+    const user = basicAuth(req);
     if (!user || !user.name || !user.pass) {
       return unauthorized(res);
     };
@@ -55,7 +63,7 @@ module.exports = function (io) {
     };
   };
 
-  router.get('/',auth, (req, res) => {
+  router.get('/', auth, (req, res) => {
     res.render('admin', {
       title: message, status: showStatus,
       DepartStatus: DepartdisplaySwitch,
@@ -63,10 +71,9 @@ module.exports = function (io) {
       JobStatus: JobdisplaySwitch
     });
   });
-
-
+    
   router.get('/api/list', (req, res) => {
-    fs.readFile('./public/upload/list.json', 'utf8', (error,json) => {
+    fs.readFile('./public/upload/list.json', 'utf8', (error, json) => {
         if (!error) {
             res.json(json);
         } else {
@@ -77,14 +84,13 @@ module.exports = function (io) {
 
 
   router.get('/api/position', (req, res) => {
-    fs.readFile('./public/upload/position.json', 'utf8', (error,json)=> {
+    fs.readFile('./public/upload/position.json', 'utf8', (error, json)=> {
         if (!error) {
             res.json(json);
         } else {
             res.json({});
         }
     });
-
   });
 
 
