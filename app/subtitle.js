@@ -34,7 +34,8 @@ function initAudio() {
         console.log(data);
         if (data.asr_sentence != undefined) {
             message = data.asr_sentence;
-            socket.emit('subtitle', { subtitle: message });
+            if (data.final == true)//句尾才傳
+                socket.emit('subtitle', { subtitle: message });
         } else {
             socket.emit('subtitle', { subtitle: "" });
         }
@@ -63,7 +64,7 @@ function initAudio() {
         jsNode.onaudioprocess = function (event) {
             var audio_data = event.inputBuffer.getChannelData(0);// || new Float32Array(2048);
             var sampleRate = event.inputBuffer.sampleRate;
-            audio_data = downSampling(audio_data,sampleRate);
+            audio_data = downSampling(audio_data, sampleRate);
             websocket.send(audio_data);
             // send audio_data to server
         }
@@ -72,22 +73,25 @@ function initAudio() {
     });
 }
 
-function downSampling(buffer,sampleRate) {
-        var e = buffer;
-        var n = sampleRate;
-        for (var t = n / 16e3, o = Math.round(e.length / t), r = new Int16Array(o), i = 0, a = 0; i < r.length;) {
-            for (var c = Math.round((i + 1) * t), u = 0, s = 0, l = a; l < c && l < e.length; l++) u += e[l], s++;
-            var f = u / s,
-                d = Math.max(-1, Math.min(1, f));
-            r[i] = d < 0 ? 32768 * d : 32767 * d, i++, a = c
-        }
-        return r;
+function downSampling(buffer, sampleRate) {
+    var e = buffer;
+    var n = sampleRate;
+    for (var t = n / 16e3, o = Math.round(e.length / t), r = new Int16Array(o), i = 0, a = 0; i < r.length;) {
+        for (var c = Math.round((i + 1) * t), u = 0, s = 0, l = a; l < c && l < e.length; l++) u += e[l], s++;
+        var f = u / s,
+            d = Math.max(-1, Math.min(1, f));
+        r[i] = d < 0 ? 32768 * d : 32767 * d, i++ , a = c
+    }
+    return r;
 }
 
 
-socket.on('new subtitle', function(json) {
+socket.on('new subtitle', function (json) {
 
     const subtitle = json.subtitle;
     $('#subtitle').text(subtitle);
-    $('#history').append(subtitle);
+    console.log("++" + subtitle);
+    if (subtitle != "")
+        $('#history').append( subtitle + "<br/>");
+
 });
