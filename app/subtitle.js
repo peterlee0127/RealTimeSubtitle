@@ -26,7 +26,7 @@ function initAudio() {
         var initStr = { action: "open_processor", session_id: "asr", meta_out: "reflect" }
         websocket.send(JSON.stringify(initStr));
     };
-
+    
     websocket.onmessage = function (e) {
 
         var data = JSON.parse(e.data);
@@ -40,7 +40,7 @@ function initAudio() {
             socket.emit('subtitle', { subtitle: "" });
         }
 
-        // console.log(e.data);
+     
     }
 
     try {
@@ -85,13 +85,28 @@ function downSampling(buffer, sampleRate) {
     return r;
 }
 
+let startInt=1;
+let startTime="";
+let lastEndTimestr="00:00:00.000";
 
 socket.on('new subtitle', function (json) {
 
     const subtitle = json.subtitle;
     $('#subtitle').text(subtitle);
-    console.log("++" + subtitle);
+    if(startTime=="")
+    {//init FirstDatetime
+        startTime=new Date();
+    }
+
     if (subtitle != "")
-        $('#history').append( subtitle + "<br/>");
+    {
+        let nowTime=new Date();
+        let nowEnd=("0"+(new Date( Math.abs(nowTime - startTime)).getUTCHours())).slice(-2)+":"+("0"+(new Date( Math.abs(nowTime - startTime)).getUTCMinutes())).slice(-2)+":"+("0"+(new Date( Math.abs(nowTime - startTime)).getUTCSeconds())).slice(-2)+"."+("00"+(new Date( Math.abs(nowTime - startTime)).getUTCMilliseconds())).slice(-3);
+        
+        $('#his_subtitle').html( subtitle );
+        $('#history').append(startInt+"<br/>"+lastEndTimestr+" --> "+nowEnd+"<br/>- "+ subtitle + "<br/><br/>");
+        lastEndTimestr=nowEnd;
+        startInt++;
+    }
 
 });
