@@ -31,3 +31,5 @@ list.json
 upload
 position.json
 dist
+bundle.js
+bundle.js.map
