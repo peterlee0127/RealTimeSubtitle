@@ -29,12 +29,13 @@
     "eslint-config-google": "^0.9.1",
     "uglifyjs-webpack-plugin": "^1.0.1",
     "webpack": "",
+    "webpack-cli": "^2.0.14",
     "webpack-merge": "^4.1.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "dev": "webpack --config webpack.dev.js --watch --debug",
+    "dev": "webpack --config webpack.dev.js --mode development --watch --debug",
     "build": "webpack --config webpack.production.js"
   },
   "author": "peterlee0127 shbhsu",
