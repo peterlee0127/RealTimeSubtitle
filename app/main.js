@@ -270,13 +270,13 @@ function draggableDisplay() {
 
         $('.draggable').draggable('enable');
         $("#button_EditPosition").attr('class', 'btn btn-danger ');
-        $("#button_EditPosition").html('編輯完成');
+        $("#button_EditPosition").html('Edit Finish');
       
     }
     else {
         $('.draggable').draggable('disable');
         $("#button_EditPosition").attr('class', 'btn btn-primary');
-        $("#button_EditPosition").html('編輯位置');
+        $("#button_EditPosition").html('Edit Position');
        
 
         $.ajax

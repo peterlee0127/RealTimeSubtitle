@@ -12,6 +12,8 @@ Different color block means different source. The bottom orange block shows our 
 
 <a href='https://www.youtube.com/watch?v=VbwKBK24T_g&feature=youtu.be&t=4842'>Sample Video.</a>
 
+<img src='screen.png' style='width:100%'>
+
 <hr>
 	
 搭配OBS直撥與支援Browser Source的直撥軟體，在直撥時，能夠顯示即時註解與文字.  
