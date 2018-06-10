@@ -8,7 +8,7 @@ Just embeded the display page to your input.
 
 ### Sample.   
 <img src='sample.png' style='width:100%'>
-Different color block means different source. The bottom block disaply our subtitle systems.   
+Different color block means different source. The bottom orange block shows our subtitle systems.   
 
 <a href='https://www.youtube.com/watch?v=VbwKBK24T_g&feature=youtu.be&t=4842'>Sample Video.</a>
 
