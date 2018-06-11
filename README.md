@@ -10,7 +10,10 @@ Just embeded the display page to your input.
 <img src='sample.png' style='width:100%'>
 Different color block means different source. The bottom orange block shows our subtitle systems.   
 
-<a href='https://www.youtube.com/watch?v=VbwKBK24T_g&feature=youtu.be&t=4842'>Sample Video.</a>
+<a href='https://www.youtube.com/watch?v=VbwKBK24T_g&feature=youtu.be&t=4842'>Sample Video</a>
+
+<a href='https://youtu.be/_BBmWyM8iOE'>Demo Video</a>
+
 
 <img src='screen.png' style='width:100%'>
 
