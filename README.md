@@ -7,7 +7,7 @@ A free plug-in for Broadcast software(support Browser Source). We can show live 
 Just embeded the display page to your input.
 
 ### Sample.   
-<img src='sample.png' style='width:100%'>
+<img src='manual/sample.png' style='width:100%'>
 Different color block means different source. The bottom orange block shows our subtitle systems.   
 
 <a href='https://www.youtube.com/watch?v=VbwKBK24T_g&feature=youtu.be&t=4842'>Sample Video</a>
@@ -15,7 +15,13 @@ Different color block means different source. The bottom orange block shows our 
 <a href='https://youtu.be/_BBmWyM8iOE'>Demo Video</a>
 
 
-<img src='screen.png' style='width:100%'>
+<img src='manual/screen.png' style='width:100%'>
+
+#### Setup Browser Source at OBS
+
+fill URL with your own server.
+
+<img src='manual/obs setup.png' style='width:100%'>
 
 <hr>
 	
@@ -70,6 +76,10 @@ $ node app.js
 
 Display Sample
 <img src="manual/screen.gif">
+
+<img src="manual/subtitle.gif">
+
+<img src="manual/live.gif">
 <hr>
 架構
 
