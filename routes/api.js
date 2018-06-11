@@ -56,11 +56,17 @@ module.exports = function (io) {
     if (!user || !user.name || !user.pass) {
       return unauthorized(res);
     };
-    if (user.name === 'pdis' && user.pass === 'pdis') {
-      return next();
-    } else {
-      return unauthorized(res);
-    };
+    let authConfig = fs.readFileSync('./config.json','utf8');
+    if(authConfig) {
+        authConfig = JSON.parse(authConfig);
+        if (user.name === authConfig.account && user.pass === authConfig.password) {
+            return next();
+        } else {
+            return unauthorized(res);
+        };
+    }else {
+        return next();
+    }
   };
 
   router.get('/', auth, (req, res) => {

@@ -27,10 +27,48 @@ Different color block means different source. The bottom orange block shows our 
 - [x] Change display subtitle by guest.
 - [x] Change subtitle logo.	  
 - [x] Input JSON file to generate list.
-- [x] drap and drop to change the list.
-- 
+- [x] drap and drop to change the list.      
 <hr>
-顯示畫面 Display Sample
+
+## Install
+
+### Install node_nodules
+
+```
+$ npm install
+```
+
+### Build production script
+
+```
+$ npm run build
+```
+
+### Start Server
+
+```
+$ node app.js
+
+```
+
+### Default Account/Password
+
+#### Change account and password in config.json.
+```
+#config.json
+{
+    "account":"pdis",
+    "password":"pdis"
+}
+```
+
+## Admin Page /
+
+## Subtitle Page  /site
+
+<hr>
+
+Display Sample
 <img src="manual/screen.gif">
 <hr>
 架構
