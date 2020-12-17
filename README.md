@@ -6,6 +6,10 @@ A free plug-in for Broadcast software(support Browser Source). We can show live 
 
 Just embeded the display page to your input.
 
+### Tech
+
+1. Node.js with socket.io.
+
 ### Sample.   
 <img src='manual/sample.png' style='width:100%'>
 Different color block means different source. The bottom orange block shows our subtitle systems.   
@@ -24,6 +28,7 @@ fill URL with your own server.
 <img src='manual/obs setup.png' style='width:100%'>
 
 <hr>
+	
 	
 搭配OBS直撥與支援Browser Source的直撥軟體，在直撥時，能夠顯示即時註解與文字.  
 不再只能在主控台控制，能夠讓其他人協助控制直播.     
